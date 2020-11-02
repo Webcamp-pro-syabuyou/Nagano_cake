@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-3 col-xs-offset-1">
+      <h2>ショッピングカート</h2>
+    </div>
+    <div class="col-xs-1 col-xs-offset-10">
+      <button class="btn btn-danger">カートを空にする</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-10">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>単価（税込）</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th></th>
+          </tr>
+        </thead>
+        <%= @cart_products.each do |cart_product| %>
+          <tr>
+            <td>
+              <%= attachment_image_tag cart_product.product, :image, :fill, 50, 50, format:'jpeg', fallback:"no_image.jpg", size:"50x50" %>
+              <%= cart_product.product.name %>
+            </td>
+            <td><%= cart_product.product.price %></td>
+            <td>
+              <%= cart_product.quantity %>
+              <!--ボックスを追加して変更できるようにする-->
+              <button class="btn btn-primary">変更</button>  
+            </td>
+            <td>小計の計算式</td>
+            <td><button class="btn btn-danger">削除する</button></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-1">
+      <button class="btn btn-primary">買い物を続ける</button>
+    </div>
+    <div class="col-xs-3">
+      <p>合計金額計算式</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4 col-xs-offset-4">
+      <button class="btn btn-success">情報入力に進む</button>
+    </div>
+  </div>
+</div>
