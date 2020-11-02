@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'homes/about' => 'homes#about'
 
   devise_for :admins
-  devise_for :customers do
+  devise_for :customers
 
   delete 'cart_products/destroy_all' => 'cart_products#destroy_all'
   get 'customers/resign' => 'custmers#resign'
@@ -21,7 +21,6 @@ Rails.application.routes.draw do
     get 'orders/number' => 'orders#number'
   end
 
-
  resource :custmers do
    resources :address
  end
@@ -31,4 +30,4 @@ Rails.application.routes.draw do
  resources :cart_products
 
 end
-end
+
