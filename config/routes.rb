@@ -22,13 +22,13 @@ Rails.application.routes.draw do
   end
 
 
- resource :custmers do
-   resources :address
- end
+ resource :custmers
+ resources :address
  resources :orders
  resources :products
  resources :order_products
  resources :cart_products
+
 
 end
 end
