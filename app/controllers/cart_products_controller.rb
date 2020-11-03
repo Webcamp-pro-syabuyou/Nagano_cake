@@ -33,13 +33,8 @@ class CartProductsController < ApplicationController
     # #in_cart_productのpriceを１件ずつ取り出したものと、cart_productsのpriceカラムのデータの積を配列に入れる
     # end
     @total_price = array.sum #ここで合計を求める
-
   end
 
-  def put_in_cart
-    @product = Product.find(1)
-  end
-  # put_in_cartメソッドはpush前に消す
 
   def update
     # 商品詳細ページから受け取るもの
