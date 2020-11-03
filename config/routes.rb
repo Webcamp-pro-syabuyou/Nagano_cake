@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   #   get 'admins/sign_in' => 'admins/sessions#new', as: :new_admins_session
   #   post 'admins/sign_in' => 'admins/sessions#create', as: :admins_session
   # end
-  # =====================================================================================================
+  # ===================================================================================================
   
 
   devise_for :admins ,controllers: {
