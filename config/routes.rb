@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root 'homes#top'
   get 'homes/about' => 'homes#about'
   
-  # 11/3 追記=========================================================================================
+ 
   # devise_for :customers ,skip: :all
   # devise_scope :customers do
   #   get 'customers/sign_in' => 'customers/sessions#new', as: :new_customers_session
@@ -17,14 +17,12 @@ Rails.application.routes.draw do
   #   get 'admins/sign_in' => 'admins/sessions#new', as: :new_admins_session
   #   post 'admins/sign_in' => 'admins/sessions#create', as: :admins_session
   # end
-  # ===================================================================================================
-  
 
-  devise_for :admins ,controllers: {
+  devise_for :admins  ,controllers: {
     sessions: 'admins/sessions'
   }
   
-  devise_for :customers ,controllers: {
+  devise_for :customers  ,controllers: {
     sessions: 'customers/sessions',
     registrations: 'customers/registrations'
   }
