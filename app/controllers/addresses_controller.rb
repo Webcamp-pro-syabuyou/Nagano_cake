@@ -3,6 +3,7 @@ class AddressesController < ApplicationController
     @address = Address.new
     @addresses = Address.all
   end
+
   
   def create
     @address = Address.new(address_params)
@@ -12,6 +13,7 @@ class AddressesController < ApplicationController
       @addresses = Address.all
       render 'index'
     end
+
   end
 
   def edit
@@ -39,4 +41,6 @@ class AddressesController < ApplicationController
     params.require(:address).permit(:postalcode, :adress, :delivery_name)
   end
 
+
 end
+
