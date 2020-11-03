@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'homes#top'
   get 'homes/about' => 'homes#about'
 
+
   devise_for :admins  ,controllers: {
     sessions: 'admins/sessions'
   }
@@ -12,7 +13,6 @@ Rails.application.routes.draw do
     sessions: 'customers/sessions',
     registrations: 'customers/registrations'
   }
-
 
   delete 'cart_products/destroy_all' => 'cart_products#destroy_all'
   get 'customers/resign' => 'custmers#resign'
@@ -48,5 +48,5 @@ end
 end
 
 
-end
+
 
