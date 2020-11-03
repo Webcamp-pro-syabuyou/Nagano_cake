@@ -23,8 +23,17 @@ class CartProductsController < ApplicationController
     @cart_products = CartProduct.all
     # 上の記述だとcustomerの指定ができていないので全部持ってきてしまう
     # @cart_products = current_customer.in_cart_products
-    # @cart_products = CartProduct.find_by(customer_id: current_customer.id)でもいい？
-    # current_customerのidが含まれているレコードだけ欲しい
+
+    array = [] #空の配列を用意し、
+    CartProduct.all.each do |cart_product|
+      array << cart_product.product.price * cart_product.quantity
+    end
+    # current_customer.cart_products.all.each do |cart_product|
+    #   array << cart_product.in_cart_products.price * cart_product.quantity
+    # #in_cart_productのpriceを１件ずつ取り出したものと、cart_productsのpriceカラムのデータの積を配列に入れる
+    # end
+    @total_price = array.sum #ここで合計を求める
+
   end
 
   def put_in_cart
@@ -33,14 +42,17 @@ class CartProductsController < ApplicationController
   # put_in_cartメソッドはpush前に消す
 
   def update
-    cart_product = CartProduct.find(params:[:id])
+    # 商品詳細ページから受け取るもの
+    #   ・cart_product.id(hidden_field)
+    #   ・quantity(text_field)
+    id = params[:cart_product][:id]
+    cart_product = CartProduct.find(id.to_i)
     # cart_product = current_customer.cart_products.find(id: params[:id])
     # show画面の個数ボックスと変更ボタンをform_withで作成し:product.idと:quantityをparamsで送ってもらうことでレコードの特定ができる
-    cart_product.update(quantity: params[:quantity])
+    cart_product.update(quantity: params[:cart_product][:quantity])
     # フォームで受け取ったstring型のquantityをinteger型に変えなければいけない
     # 特定したレコードのquantityカラムをフォームで受け取ったquantityに差し替える
     redirect_to cart_products_path
-
   end
 
   def show
@@ -59,7 +71,7 @@ class CartProductsController < ApplicationController
 
   private
   def cart_item_params
-    params.require(:cart_item).permit(:product_id, :quantity)
+    params.require(:cart_product).permit(:product_id, :quantity)
   end
 
 end
