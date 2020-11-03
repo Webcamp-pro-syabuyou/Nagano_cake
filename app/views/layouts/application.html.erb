@@ -10,6 +10,45 @@
   </head>
 
   <body>
+   
+    <!-- header -->
+    <header>
+      <div class="header">
+   <div class="logo">Logo</div>
+   <div class="header-list">
+     <nav>
+       <ul>
+         <!-- if coustomer_sign_out -->
+         
+         <li class="header-list-item"><%= link_to "About", homes_about_path %></li>
+         <a href ="#"><li class="header-list-item">商品一覧</li></a>
+         <li class="header-list-item">新規登録</li>
+         <li class="header-list-item">ログイン</li>
+         
+         <!-- if coustomer_sign_in -->
+         
+         <a href="#"><li class="header-list-item">マイページ</li></a>
+         <a href ="#"><li class="header-list-item">商品一覧</li></a>
+         <a href ="#"><li class="header-list-item">カート</li></a>
+         <li class="header-list-item">ログアウト</li>
+
+         <!-- if admin_sign_in -->
+         
+         <a href ="#"><li class="header-list-item">商品一覧</li></a>
+         <a href ="#"><li class="header-list-item">会員一覧</li></a>
+         <a href ="#"><li class="header-list-item">注文履歴一覧</li></a>
+         <a href ="#"><li class="header-list-item">ジャンル一覧</li></a>
+         <li class="header-list-item">ログアウト</li>
+       </ul>
+     </nav>
+   </div>
+
+   </div>
+    </header>
+     <main>
+       <div class="container">
     <%= yield %>
+       </div>
+    </main>
   </body>
 </html>

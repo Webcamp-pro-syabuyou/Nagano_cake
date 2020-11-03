@@ -1,3 +1,46 @@
 // Place all the styles related to the homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* top */
+
+.table {
+  border: 2px solid black;
+}
+
+.top-message {
+  text-align: center;
+  border: 2px solid black;
+}
+
+.popular-products {
+   text-align: center;
+   border: 2px solid black;
+}
+
+.popular-puroducts-container {
+   display :flex;
+   justify-content: center;
+}
+
+/* about */
+
+.about-heading {
+  text-align: center;
+  font-size: 50px;
+  margin-bottom: 15px;
+}
+
+.about-message {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.shop-image {
+   width: 40%;
+   height: 150px;
+   border: 2px solid black;
+   display :flex;
+   justify-content: center;
+}

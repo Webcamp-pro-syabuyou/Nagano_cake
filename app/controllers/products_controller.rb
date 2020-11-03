@@ -1,4 +1,5 @@
 class ProductsController < ApplicationControlle
+
   
   def index
       @genres = Genre.where(display_status: true)
