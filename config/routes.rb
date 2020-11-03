@@ -4,8 +4,16 @@ Rails.application.routes.draw do
   root 'homes#top'
   get 'homes/about' => 'homes#about'
 
-  devise_for :admins
-  devise_for :customers 
+
+  devise_for :admins ,controllers: {
+    sessions: 'admins/sessions'
+  }
+
+  devise_for :customers ,controllers: {
+    sessions: 'customers/sessions',
+    registrations: 'customers/registrations'
+  }
+
 
   delete 'cart_products/destroy_all' => 'cart_products#destroy_all'
   get 'customers/resign' => 'custmers#resign'
@@ -22,18 +30,24 @@ Rails.application.routes.draw do
     get 'orders/number' => 'orders#number'
   end
 
+   resource :custmers do
+     resources :address
+   end
+   resources :products
+   resources :order_products
+   resources :cart_products
 
- resource :custmers do
- resources :address
- end
+
+ 
  
  resources :orders do
    collection do 
      post :confirm
   end
 end
- resources :products
- resources :order_products
- resources :cart_products
+ 
+end
+
+
 end
 
