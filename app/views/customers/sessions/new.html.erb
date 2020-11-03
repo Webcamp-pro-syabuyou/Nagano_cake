@@ -7,8 +7,8 @@
   </div>
 
   <div class="field">
-    <%= f.label :password ,"パスワード"%><br />
-    <%= f.password_field :password%>
+    <%= f.label :encrypted_password ,"パスワード"%><br />
+    <%= f.password_field :encrypted_password%>
   </div>
 
   <% if devise_mapping.rememberable? %>
