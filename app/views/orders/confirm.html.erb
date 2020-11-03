@@ -57,8 +57,9 @@
 
 <div class="confind-delivery_address">
  <h3>お届け先</h3>
- <p><%= @order, delivery_address %></p>
- <p><%= @order, delivery_name</p>
+ <p><%= @order.postalcode %></p>
+ <p><%= @order.delivery_address %></p>
+ <p><%= @order.delivery_name %></p>
 </div>
 
 
@@ -66,3 +67,4 @@
 
 </div>
 </div>
+

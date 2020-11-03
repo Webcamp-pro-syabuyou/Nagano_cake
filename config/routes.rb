@@ -5,12 +5,13 @@ Rails.application.routes.draw do
   get 'homes/about' => 'homes#about'
 
   devise_for :admins
-  devise_for :customers do
+  devise_for :customers 
 
   delete 'cart_products/destroy_all' => 'cart_products#destroy_all'
   get 'customers/resign' => 'custmers#resign'
   get 'orders/thanks' => 'orders#thanks'
-
+  post 'orders/confirm' => 'orders#confirm'
+  
   namespace :admins do
     resources :orders
     resource :customers
@@ -22,13 +23,19 @@ Rails.application.routes.draw do
   end
 
 
- resource :custmers
+ resource :custmers do
  resources :address
- resources :orders
+ end
+ 
+ resources :orders do
+   collection do 
+     post :confirm
+  end
+end
  resources :products
  resources :order_products
  resources :cart_products
 
 
 end
-end
+
