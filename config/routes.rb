@@ -35,7 +35,5 @@ end
  resources :products
  resources :order_products
  resources :cart_products
-
-
 end
 

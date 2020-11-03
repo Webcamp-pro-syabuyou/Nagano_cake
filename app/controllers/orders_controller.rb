@@ -9,10 +9,9 @@ class OrdersController < ApplicationController
   end
   
   
-  def confiem
-  
+  def confirm
      return if @order.valid?
-     render 'new'
+     render 'confirm'
   end  
 
   
@@ -21,7 +20,9 @@ class OrdersController < ApplicationController
   end
 
   def create 
-    @order = Order(order_params)
+    @order = Order.new(order_params)
+    @order.save
+    redirect_to 'thanks'
   end
 
   def show
