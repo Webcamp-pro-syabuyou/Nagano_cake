@@ -1,14 +1,14 @@
 <h2>会員の方はこちらからログイン</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: customer_session_path) do |f| %>
   <div class="field">
     <%= f.label :email ,"メールアドレス"%><br />
     <%= f.email_field :email, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= f.label :encrypted_password ,"パスワード"%><br />
-    <%= f.password_field :encrypted_password%>
+    <%= f.label :password ,"パスワード"%><br />
+    <%= f.password_field :password %>
   </div>
 
   <% if devise_mapping.rememberable? %>
@@ -24,6 +24,6 @@
 <% end %>
 
 <h2>登録がお済みでない方</h2>
-<%= link_to "こちら", new_customer_registration_path "#{から新規登録を行ってください}"%>
+
 
 <%= render "customers/shared/links" %>

@@ -25,7 +25,7 @@
           <% @cart_products.each do |cart_product| %>
             <tr>
               <td>
-                <%= attachment_image_tag cart_product.product, :image_id, :fill, 50, 50, format:'jpeg', fallback:"no_image.jpg", size:"50x50" %>
+                <%= attachment_image_tag cart_product.product, :image, :fill, 50, 50, format:'jpeg', fallback:"no_image.jpg", size:"50x50" %>
                 <%= cart_product.product.name %>
               </td>
               <td><%= cart_product.product.price %></td>
@@ -64,7 +64,9 @@
     </div>
     <div class="row">
       <div class="col-xs-4 col-xs-offset-4">
-        <button class="btn btn-success">情報入力に進む</button>
+        <%= link_to new_order_path do %>
+          <button class="btn btn-success">情報入力に進む</button>
+        <% end %>
       </div>
     </div>
   </div>
