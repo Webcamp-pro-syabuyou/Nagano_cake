@@ -1,5 +1,6 @@
-<h2>会員の方はこちらからログイン</h2>
+<p>会員の方はこちらからログイン</p>
 
+<<<<<<< HEAD
 <%= form_for(resource, as: resource_name, url: customer_session_path) do |f| %>
   <div class="field">
     <%= f.label :email ,"メールアドレス"%><br />
@@ -17,13 +18,32 @@
       <%= f.check_box :remember_me %>
     </div>
   <% end %>
+=======
+<%= form_with model: @customer, url: session_path(resource_name), local: true do |f| %>
+    <table>
+      <tr>
+        <td>メールアドレス<td>
+        <td><%= f.email_field :email, autofocus: true %></td>
+      </tr>
+      <tr>
+        <td>パスワード<td> 
+        <td><%= f.password_field :password%></td>
+      </tr>
+    </table>
+    
+>>>>>>> origin/develop
 
   <div class="actions">
-    <%= f.submit "ログイン" %>
+    <%= f.submit "ログイン" ,class: "btn btn-primary"%>
   </div>
 <% end %>
 
+<<<<<<< HEAD
 <h2>登録がお済みでない方</h2>
 
+=======
+<p>登録がお済みでない方</p>
+<%= link_to "こちら", new_customer_registration_path%>
+>>>>>>> origin/develop
 
 <%= render "customers/shared/links" %>
