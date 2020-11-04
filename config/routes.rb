@@ -3,21 +3,23 @@ Rails.application.routes.draw do
 
   root 'homes#top'
   get 'homes/about' => 'homes#about'
-  
-   resource :custmers do
-   resources :address
-   end
-   resources :products
-   resources :order_products
-   resources :cart_products
- resources :orders do
-   collection do
-     post :confirm
-  end
-end
+  delete 'cart_products/destroy_all' => 'cart_products#destroy_all'
+  get 'customers/resign' => 'custmers#resign'
+  get 'orders/thanks' => 'orders#thanks'
+  post 'orders/confirm' => 'orders#confirm'
 
-  
-  
+  resource :custmers do
+  resources :address
+  end
+  resources :products
+  resources :order_products
+  resources :cart_products
+  resources :orders do
+    collection do
+      post :confirm
+    end
+  end
+
   devise_for :customers ,controllers: {
     sessions: 'customers/sessions',
     registrations: 'customers/registrations'
@@ -26,11 +28,6 @@ end
   devise_for :admins  ,controllers: {
     sessions: 'admins/sessions'
   }
-
-  delete 'cart_products/destroy_all' => 'cart_products#destroy_all'
-  get 'customers/resign' => 'custmers#resign'
-  get 'orders/thanks' => 'orders#thanks'
-  post 'orders/confirm' => 'orders#confirm'
 
   namespace :admins do
     resources :orders
@@ -41,7 +38,6 @@ end
     end
     get 'orders/number' => 'orders#number'
   end
-
 end
 
 
