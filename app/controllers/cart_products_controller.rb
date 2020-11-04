@@ -27,7 +27,7 @@ class CartProductsController < ApplicationController
       array << cart_product.product.price * cart_product.quantity
     #in_cart_productのpriceを１件ずつ取り出したものと、cart_productsのpriceカラムのデータの積を配列に入れる
     end
-    @total_price = array.sum #ここで合計を求める
+    @total_price = (array.sum * 1.1).floor #ここで合計を求める
   end
 
 
@@ -39,12 +39,11 @@ class CartProductsController < ApplicationController
     cart_product = CartProduct.find(params[:id])
     if params[:cart_product][:quantity] == "0"
       cart_product.destroy
-    elsif params[:cart_product][:quantity].is_a?(String)
-      @cart_products = current_customer.cart_products
-      render 'cart_products/index'
+    # elsif params[:cart_product][:quantity].is_a?(String)
+    #   @cart_products = current_customer.cart_products
+    #   render 'cart_products/index'
     else
       cart_product.update(quantity: params[:cart_product][:quantity])
-    byebug
     redirect_to cart_products_path
     end
   end

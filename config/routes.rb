@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   devise_for :customers ,controllers: {
     sessions: 'customers/sessions',
     registrations: 'customers/registrations'
-    
+
   }
 
   devise_for :admins  ,controllers: {
@@ -18,10 +18,10 @@ Rails.application.routes.draw do
   get 'customers/resign' => 'custmers#resign'
   get 'orders/thanks' => 'orders#thanks'
   post 'orders/confirm' => 'orders#confirm'
-  
+
   namespace :admins do
     resources :orders
-    resource :customers
+    resources :customers
     resources :products
     resources :order_products do
       resources :genres
@@ -37,14 +37,14 @@ Rails.application.routes.draw do
    resources :cart_products
 
 
- 
- 
+
+
  resources :orders do
-   collection do 
+   collection do
      post :confirm
   end
 end
- 
+
 end
 
 

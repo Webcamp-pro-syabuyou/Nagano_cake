@@ -13,5 +13,8 @@ class Customer < ApplicationRecord
 
   has_many :addresses, dependent: :destroy
 
+  def fullname(customer)
+    return customer.family_name + customer.first_name
+  end
 
 end
