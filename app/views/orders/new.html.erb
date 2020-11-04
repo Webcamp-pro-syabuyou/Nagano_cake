@@ -1,17 +1,17 @@
 
 <div class="order-field">
-  <%= form_with model: @order, url: confirm_orders_path, local: true do |f| %>
+ <%= form_with model: @order, url: confirm_orders_path, local: true do |f| %>
   
   <!-- 支払い方法選択フォーム -->
   
-  <h4><%= f.label :payment_method, "支払方法" %></h4>
+  <h4><%= f.label :payment_method, payment_method "支払方法" %></h4>
   <%= f.radio_button :payment_method, :クレジットカード, checked: "checked" %>
   <%= f.label :payment_method, "クレジットカード" %>
   <br>
   <%= f.radio_button :payment_method, :銀行振込, checked: "checked" %>
   <%= f.label :payment_method, "銀行振込" %>
   
-  <% end %>
+  
   <!-- お届け先選択フォーム -->
   
   <h4><%#= f.label :delivery_address, "お届け先" %></h4>
@@ -39,7 +39,7 @@
   <%#= add.radio_button :delivery_address, :新しいお届け先, checked: "checked" %>
   <%#= add.label :delivery_address, "新しいお届け先" %>
   <br>
-  <%= form_with model: @order, url: confirm_orders_path, local: true do |f| %>
+  
   <%= f.label :delivery_address, "郵便番号" %>
   <%= f.text_field :postalcode %>
   <br>

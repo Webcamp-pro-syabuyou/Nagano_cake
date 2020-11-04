@@ -10,6 +10,8 @@ class OrdersController < ApplicationController
   
   
   def confirm
+
+       
      return if @order.valid?
      render 'confirm'
   end  
