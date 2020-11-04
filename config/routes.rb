@@ -4,14 +4,14 @@ Rails.application.routes.draw do
   root 'homes#top'
   get 'homes/about' => 'homes#about'
 
-
-  devise_for :admins  ,controllers: {
-    sessions: 'admins/sessions'
-  }
-
   devise_for :customers ,controllers: {
     sessions: 'customers/sessions',
     registrations: 'customers/registrations'
+    
+  }
+
+  devise_for :admins  ,controllers: {
+    sessions: 'admins/sessions'
   }
 
   delete 'cart_products/destroy_all' => 'cart_products#destroy_all'

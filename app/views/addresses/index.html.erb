@@ -1,0 +1,42 @@
+<p>配送先登録/一覧</p>
+
+ <!--配送先登録-->
+  <%= form_with model:@address,local:true do |f|%>
+  <div class  = "row">
+    <div class='col-xs-3'>
+      <p>郵便番号（ハイフンなし）</p>
+      <p>住所</p>
+      <p>宛名</p>
+    </div>
+    <div class='col-xs-6'>
+      <%= f.text_field :postalcode, autofocus: true %>
+      <%= f.text_field :address, autofocus: true %>
+      <%= f.text_field :delivery_name, autofocus: true %>
+    </div>
+    <div class='col-xs-3'>
+      <%= f.submit"登録する",class: "btn btn-success"%>
+    </div>
+  </div>
+  <% end %>
+  
+  <!--配送先一覧-->
+  <table class='table table-hover table-inverse'>
+  <thead>
+    <tr>
+      <th>郵便番号</th>
+      <th>住所</th>
+      <th>宛名</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @addresses.each do |address| %>
+      <tr>
+        <td><%= address.postalcode%></td>
+        <td><%= address.address%></td>
+        <td><%= book.delivery_name %></td>
+        <td><%= link_to"編集する",edit_custmers_address_path(address.id)%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
