@@ -3,18 +3,20 @@ Rails.application.routes.draw do
 
   root 'homes#top'
   get 'homes/about' => 'homes#about'
+  delete 'cart_products/destroy_all' => 'cart_products#destroy_all'
+  get 'customers/resign' => 'custmers#resign'
+  patch 'customers/resign' => 'customers#resign_update'
+  get 'orders/thanks' => 'orders#thanks' 
   
-     resource :customers,except: :create do
-     resources :addresses
+  resource :customers,except: :create do
+  resources :addresses
    end
-   
-   resources :products
-   resources :order_products
-   resources :cart_products
-   
-   resources :orders do
-     collection do 
-       post :confirm
+  resources :products
+  resources :order_products
+  resources :cart_products, only:[:create, :index, :update, :destroy]
+  resources :orders do
+    collection do
+      post :confirm
     end
   end
 
@@ -26,19 +28,12 @@ Rails.application.routes.draw do
   devise_for :admins  ,controllers: {
     sessions: 'admins/sessions'
   }
-
-  delete 'cart_products/destroy_all' => 'cart_products#destroy_all'
-  get 'customers/resign' => 'customers#resign'
-  get 'orders/thanks' => 'orders#thanks'
-  post 'orders/confirm' => 'orders#confirm'
-  
-  patch 'customers/resign' => 'customers#resign_update'
-  
+ 
   namespace :admins do
-    resources :orders
+    resources :orders, only:[:index, :show, :update]
     resources :customers
     resources :products
-    resources :order_products do
+    resources :order_products, only: [:update] do
       resources :genres
     end
     get 'orders/number' => 'orders#number'
