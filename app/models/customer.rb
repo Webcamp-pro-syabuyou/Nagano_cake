@@ -12,6 +12,33 @@ class Customer < ApplicationRecord
   has_many :purchased_products, through: :order_products, source: :product
 
   has_many :addresses, dependent: :destroy
-
-
+  
+  def active_for_authentication?
+    super && (self.is_deleted == false)
+  end
+  
+  
+  
+  # バリデーション---------------------------------------------------
+  validates :family_name, presence: true
+  validates :first_name, presence: true
+  validates :family_name_kana, presence: true, format: {
+                  with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/,
+                  message: "全角カタカナで入力して下さい"
+                }
+  validates :first_name_kana, presence: true, format: {
+                  with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/,
+                  message: "全角カタカナで入力して下さい"
+                }
+                
+  # validates :postalcode ,presence: :true, format: {
+  #               with: /^[0-9０-９]+$/,
+  #               message: "数字7ケタで入力して下さい"
+  #               }
+  # validates :address ,presence: :true
+  # validates :tel ,presence: :true, format: {
+  #               with: /^[0-9０-９]+$/,
+  #               message: "数字で入力して下さい"
+  #               }  
+  # -------------------------------------------------------------------
 end

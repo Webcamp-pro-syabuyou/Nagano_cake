@@ -1,0 +1,26 @@
+<p>配送先編集</p>
+
+<div class = "row">
+<%= form_with model:@address, url:customers_address_path,local:true do |f| %>
+  <div class = "col-xs-8">
+    <table>
+      <tr>
+        <td>電話番号（ハイフンなし）</td>
+        <td><%= f.text_field :postalcode, autofocus: true %></td>
+      </tr>
+      <tr>
+        <td>住所</td>
+        <td><%= f.text_field :address, autofocus: true, size: 50 %></td>
+      </tr>
+      <tr>
+        <td>宛名</td>
+        <td><%= f.text_field :delivery_name, autofocus: true %></td>
+      </tr>
+    </table>
+  </div>
+  <div class = "col-xs-4">
+  <%= f.submit"編集する",class: "btn btn-primary"%>
+  <!--下寄せにするには…？-->
+  </div>
+<% end %>
+</div>

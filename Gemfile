@@ -70,3 +70,6 @@ gem 'will_paginate',           '3.1.6'
 gem 'bootstrap-will_paginate', '1.0.0'
 gem 'jp_prefecture'
 gem 'kaminari','~> 1.2.1'
+
+# 追加
+gem 'paranoia'

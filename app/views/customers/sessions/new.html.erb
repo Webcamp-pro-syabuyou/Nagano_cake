@@ -1,3 +1,4 @@
+<%= flash[:error] %>
 <p>会員の方はこちらからログイン</p>
 
 <%= form_with model: @customer, url: session_path(resource_name), local: true do |f| %>

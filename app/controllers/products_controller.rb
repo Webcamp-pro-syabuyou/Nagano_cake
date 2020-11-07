@@ -22,7 +22,6 @@ class ProductsController < ApplicationControlle
         @product = Product.find(params[:id])
         @genres = Genre.where(display_status: true)
         @cart = Cart.new
-
     end
 
 end
