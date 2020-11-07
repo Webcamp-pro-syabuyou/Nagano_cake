@@ -1,4 +1,7 @@
 class AddressesController < ApplicationController
+  # ログイン済ユーザに対してのみアクセスを許可（それ以外sign_inへ）
+  before_action :authenticate_customer!
+  
   def index
     @address = Address.new
     @addresses = Address.all
@@ -7,22 +10,24 @@ class AddressesController < ApplicationController
   
   def create
     @address = Address.new(address_params)
+    @address.customer_id = current_customer.id
+    # アドレス変数にユーザIDを紐づける
     if @address.save
-      redirect_to address_path, notice: "サクセスメッセージ"
+    redirect_to customers_addresses_path, notice: "サクセスメッセージ"
     else
       @addresses = Address.all
       render 'index'
     end
-
   end
 
   def edit
-    @address = address.find(params[:id]) 
+    @address = Address.find(params[:id]) 
   end
   
   def update
+    @address = Address.find(params[:id])
     if @address.update(address_params)
-      redirect_to address_path, notice: "サクセスメッセージ"
+      redirect_to customers_addresses_path, notice: "サクセスメッセージ"
     else
       @addresses = Address.all
       render 'index'
@@ -31,9 +36,10 @@ class AddressesController < ApplicationController
   
   
   def destroy
-    @address = ddress.find(params[:id])
+    @address = Address.find(params[:id])
+    @address.customer_id = current_customer.id
     @address.destroy
-    redirect_to address_path,notice: "サクセスメッセージ"
+    redirect_to customers_addresses_path,notice: "サクセスメッセージ"
   end
   
   private
@@ -43,4 +49,3 @@ class AddressesController < ApplicationController
 
 
 end
-

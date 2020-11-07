@@ -1,4 +1,6 @@
-<h2>会員の方はこちらからログイン</h2>
+
+<%= flash[:error] %>
+<p>会員の方はこちらからログイン</p>
 
 <%= form_for(resource, as: resource_name, url: customer_session_path) do |f| %>
     <div class="field">
