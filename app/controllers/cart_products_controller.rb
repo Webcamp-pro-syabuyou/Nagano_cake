@@ -14,40 +14,45 @@ class CartProductsController < ApplicationController
       flash[:notice] = "New Product was successfully added to cart."
       redirect_to cart_products_path
     else
-      # render 'show画面'
+      render "products/show"
+      # products/show内の変数しないとエラーでる
     end
   end
 
   def index
     @cart_products = current_customer.cart_products
-
-    array = [] #空の配列を用意し、
+    @cart_product = CartProduct.new
+    array = []
     current_customer.cart_products.all.each do |cart_product|
       array << cart_product.product.price * cart_product.quantity
-    #in_cart_productのpriceを１件ずつ取り出したものと、cart_productsのpriceカラムのデータの積を配列に入れる
     end
-    @total_price = (array.sum * 1.1).floor #ここで合計を求める
+    @total_price = (array.sum * 1.1).floor
   end
-
 
   def update
     id = params[:cart_product][:id]
-    cart_product = CartProduct.find(params[:id])
+    @cart_product = CartProduct.find(params[:id])
     if params[:cart_product][:quantity] == "0"
-      cart_product.destroy
+      @cart_product.destroy
+      redirect_to cart_products_path
+    elsif @cart_product.update(quantity: params[:cart_product][:quantity])
+      flash[:notice] = "Quantity was successfully changed."
+      redirect_to cart_products_path
     else
-      cart_product.update(quantity: params[:cart_product][:quantity])
-    redirect_to cart_products_path
+      @cart_products = current_customer.cart_products
+      render "cart_products/index"
     end
   end
 
   def destroy
     current_customer.cart_products.find(params[:id]).destroy
+    flash[:notice] = "You have successfully deleted the propduct"
     redirect_to cart_products_path
   end
 
   def destroy_all
     current_customer.cart_products.destroy_all
+    flash[:notice] = "You have successfully deleted the propducts"
     redirect_to cart_products_path
   end
 

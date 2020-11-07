@@ -24,20 +24,20 @@
          <a href ="#"><li class="header-list-item">商品一覧</li></a>
          <li class="header-list-item"><%= link_to "新規登録", new_customer_registration_path %></li>
          <li class="header-list-item"><%= link_to "ログイン", new_customer_session_path %></li>
-        
+
          <!-- if coustomer_sign_in -->
-         
+
          <% if customer_signed_in? %>
-         
+
          <a href="#"><li class="header-list-item">マイページ</li></a>
          <a href ="#"><li class="header-list-item">商品一覧</li></a>
          <a href ="#"><li class="header-list-item">カート</li></a>
          <li class="header-list-item"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
-         
+
         <% end %>
-        
+
          <!-- if admin_sign_in -->
-         
+
          <% if admin_signed_in? %>
          <a href ="#"><li class="header-list-item">商品一覧</li></a>
          <a href ="#"><li class="header-list-item">会員一覧</li></a>
@@ -51,8 +51,15 @@
 
    </div>
     </header>
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+    
      <main>
        <div class="container">
+         
     <%= yield %>
        </div>
     </main>

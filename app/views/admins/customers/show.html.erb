@@ -9,11 +9,11 @@
   </tr>
   <tr>
     <th>氏名</th>
-    <td><%= @customer.family_name + @customer.first_name %></td>
+    <td><%= @customer.family_name + " " + @customer.first_name %></td>
   </tr>
   <tr>
     <th>フリガナ</th>
-    <td><%= @customer.family_name_kana %><%= @customer.first_name_kana %></td>
+    <td><%= @customer.family_name_kana + "  " + @customer.first_name_kana %></td>
   </tr>
   <tr>
     <th>郵便番号</th>
@@ -33,5 +33,10 @@
   </tr>
 </table>
 
-<%= link_to "編集する", edit_admins_customer_path(@customer) %>
-<%= link_to "注文一覧を見る", admins_orders_path %>
+<%= link_to edit_admins_customer_path(@customer) do %>
+  <button class="btn btn-primary">編集する</button>
+<% end %>
+
+<%= link_to admins_orders_path do %>
+  <button class="btn btn-primary">注文一覧を見る</button>
+<% end %>

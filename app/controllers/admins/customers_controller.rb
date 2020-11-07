@@ -11,9 +11,13 @@ class Admins::CustomersController < ApplicationController
     end
 
     def update
-        customer = Customer.find(params[:id])
-        customer.update(customer_params)
-        redirect_to admins_customers_path
+        @customer = Customer.find(params[:id])
+        if @customer.update(customer_params)
+            flash[:notice] = "You have successfully changed customer's information"
+            redirect_to admins_customers_path
+        else
+            render "admins/customers/edit"
+        end
     end
 
     def show

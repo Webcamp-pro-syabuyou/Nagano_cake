@@ -13,8 +13,8 @@ class Customer < ApplicationRecord
 
   has_many :addresses, dependent: :destroy
 
-  def fullname(customer)
-    return customer.family_name + customer.first_name
-  end
+  validates :family_name, presence: :true
+  # 試験的に記入、あとで削除
+
 
 end

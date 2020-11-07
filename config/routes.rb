@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
   resources :products
   resources :order_products
-  resources :cart_products
+  resources :cart_products, only:[:create, :index, :update, :destroy]
   resources :orders do
     collection do
       post :confirm
@@ -30,10 +30,10 @@ Rails.application.routes.draw do
   }
 
   namespace :admins do
-    resources :orders
+    resources :orders, only:[:index, :show, :update]
     resources :customers
     resources :products
-    resources :order_products do
+    resources :order_products, only: [:update] do
       resources :genres
     end
     get 'orders/number' => 'orders#number'
