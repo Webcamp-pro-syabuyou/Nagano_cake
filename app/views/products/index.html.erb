@@ -10,7 +10,7 @@
       <div class="row">
         <h3 class="under-border">
           <% if params[:genre_id] %>
-            <%= @genre.genre %>
+            <%= @genre.name %>
           <% else %>
             すべての商品
           <% end %>
@@ -30,7 +30,7 @@
                 <div class="col-xs-3 mt-3 product-photo"> <!--1個ずつまとめてカラムを指定する-->
                     <div class="mx-auto imgWrap">
                     <%= link_to product_path(product) do %>
-                    <%= attachment_image_tag product, :image, :limit, 200,200, format: 'jpeg', fallback: 'no-image.png',size: "200x200" %>
+                    <%= attachment_image_tag product, :image, :limit, 200,200, format: 'jpeg', fallback: 'no-image.jpg',size: "200x200" %>
                     </div>
                     <% end %><br>
                     <strong><%= product.name %></strong><br>
