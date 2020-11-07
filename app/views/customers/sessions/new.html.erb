@@ -1,24 +1,29 @@
-<p>会員の方はこちらからログイン</p>
+<h2>会員の方はこちらからログイン</h2>
 
-<%= form_with model: @customer, url: session_path(resource_name), local: true do |f| %>
-    <table>
-      <tr>
-        <td>メールアドレス<td>
-        <td><%= f.email_field :email, autofocus: true %></td>
-      </tr>
-      <tr>
-        <td>パスワード<td> 
-        <td><%= f.password_field :password%></td>
-      </tr>
-    </table>
-    
+<%= form_for(resource, as: resource_name, url: customer_session_path) do |f| %>
+    <div class="field">
+      <%= f.label :email ,"メールアドレス"%><br />
+      <%= f.email_field :email, autofocus: true %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "ログイン" ,class: "btn btn-primary"%>
-  </div>
+    <div class="field">
+      <%= f.label :password ,"パスワード"%><br />
+      <%= f.password_field :password %>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="field">
+        <%= f.label :remember_me, "=>パスワードを忘れた方はこちら"%><br />
+        <%= f.check_box :remember_me %>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit "ログイン" %>
+    </div>
 <% end %>
 
-<p>登録がお済みでない方</p>
-<%= link_to "こちら", new_customer_registration_path%>
+<h2>登録がお済みでない方</h2>
+
 
 <%= render "customers/shared/links" %>

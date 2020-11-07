@@ -13,5 +13,8 @@ class Customer < ApplicationRecord
 
   has_many :addresses, dependent: :destroy
 
+  validates :family_name, presence: :true
+  # 試験的に記入、あとで削除
+
 
 end
