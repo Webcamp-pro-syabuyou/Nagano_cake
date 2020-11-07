@@ -29,6 +29,10 @@ Rails.application.routes.draw do
     sessions: 'admins/sessions'
   }
 
+  delete 'cart_products/destroy_all' => 'cart_products#destroy_all'
+  get 'customers/resign' => 'custmers#resign'
+  get 'orders/thanks' => 'orders#thanks'
+
   namespace :admins do
     resources :orders, only:[:index, :show, :update]
     resources :customers
@@ -38,6 +42,7 @@ Rails.application.routes.draw do
     end
     get 'orders/number' => 'orders#number'
   end
+
 end
 
 

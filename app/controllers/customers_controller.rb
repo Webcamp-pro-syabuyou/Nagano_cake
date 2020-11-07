@@ -1,18 +1,18 @@
 class CustomersController < ApplicationController
   def edit
-    @custmer = Customer.find(params[:id])
+    @customer = Customer.find(params[:id])
   end
 
   def update
-    if @custmer.update(custmer_params)
-      redirect_to custmer_path(@custmer), notice: "サクセスメッセージ"
+    if @cusotmer.update(customer_params)
+      redirect_to customer_path(@customer), notice: "サクセスメッセージ"
     else
       render "edit"
     end
   end
   
   private
-  def custmer_params
-    params.require(:custmer).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :postalcode, :address, :tel)
+  def customer_params
+    params.require(:customer).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :postalcode, :address, :tel)
   end
 end
