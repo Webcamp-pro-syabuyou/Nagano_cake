@@ -2,6 +2,7 @@ class Admins::ProductsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
+
     # kaminari
     @products = Product.page(params[:page]).per(10)
     # binding.pry
@@ -11,6 +12,7 @@ class Admins::ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @genres = Genre.all
     # binding.pry
+
   end
 
   def new

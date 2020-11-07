@@ -39,31 +39,44 @@
    <th>請求金額</th>
    <tr><!-- 請求金額 --></tr>
   </tr>
- </tbody>
+  </tbody>
 </table>
 
 </div>
 </div>
 
-<!-- 支払い方法、配送先 -->
+<!-- 支払い方法 -->
+
+<%= form_with model: @order, url: orders_path, local: true do |f| %>
 
 <div class="row">
  <div class="col-md-12">
 
 <div class="cofind-pay-method">
 <h3>支払方法</h3>
-<p><!-- クレジット or 現金振込 --></p>
+<p><!-- クレジット or 現金振込 -->
+<%= @order.payment_method %>
+<%= f.hidden_field :payment_method, :value => @order.payment_method %>
+</p>
 </div>
+
+<!-- 配送先 -->
 
 <div class="confind-delivery_address">
+
  <h3>お届け先</h3>
  <p><%= @order.postalcode %></p>
- <p><%= @order.delivery_address  %></p>
+ <%= f.hidden_field :postalcode, :value => @order.postalcode %>
+ <p><%= @order.delivery_address %></p>
+ <%= f.hidden_field :delivery_address, :value => @order.delivery_address %>
  <p><%= @order.delivery_name %></p>
+ <%= f.hidden_field :delivery_name, :value => @order.delivery_name %>
+
 </div>
 
 
-<%#= link_to "購入を確定する", orders_thanks_path %>
+<%= f.submit '購入を確定する', class:"btn btn-success" %>
+<% end %>
 
 </div>
 </div>

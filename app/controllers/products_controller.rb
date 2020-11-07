@@ -1,6 +1,6 @@
-class ProductsController < ApplicationControlle
+class ProductsController < ApplicationController
 
-  
+
   def index
       @genres = Genre.where(is_genres_status: true)
      	# もしURLに[:genre_id]が含まれていたら
@@ -16,12 +16,14 @@ class ProductsController < ApplicationControlle
         end
       # 8件でページをわける
       @products = @products_all.page(params[:page]).per(8)
+
   end
 
     def show
         @product = Product.find(params[:id])
-        @genres = Genre.where(is_genres_status: true)
-        @cart = Cart.new
+
+        @genres = Genre.where(display_status: true)
+        @cart_product = CartProduct.new
 
     end
 

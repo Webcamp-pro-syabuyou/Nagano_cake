@@ -31,14 +31,14 @@ class AddressesController < ApplicationController
   
   
   def destroy
-    @address = Address.find(params[:id])
+    @address = ddress.find(params[:id])
     @address.destroy
     redirect_to address_path,notice: "サクセスメッセージ"
   end
   
   private
   def address_params
-    params.require(:address).permit(:postalcode, :adress, :delivery_name)
+    params.require(:address).permit(:postalcode, :address, :delivery_name)
   end
 
 
