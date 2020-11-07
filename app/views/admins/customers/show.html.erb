@@ -5,7 +5,14 @@
 <table class="table">
   <tr>
     <th>顧客ID</th>
-    <td><%= @customer.id %></td>
+    <td>
+      <%= @customer.id %>
+      <% if @customer.is_deleted %>
+        <span class="label label-danger">退会済会員</span>
+      <% else %>
+        <span class="label label-primary">有効会員</span>
+      <% end %>
+    </td>
   </tr>
   <tr>
     <th>氏名</th>

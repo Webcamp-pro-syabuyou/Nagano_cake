@@ -7,7 +7,6 @@ class Admins::CustomersController < ApplicationController
 
     def edit
         @customer = Customer.find(params[:id])
-        # showページからid受け取っているか要確認
     end
 
     def update
@@ -16,7 +15,7 @@ class Admins::CustomersController < ApplicationController
             flash[:notice] = "You have successfully changed customer's information"
             redirect_to admins_customers_path
         else
-            render "admins/customers/edit"
+            render 'admins/customers/edit'
         end
     end
 
