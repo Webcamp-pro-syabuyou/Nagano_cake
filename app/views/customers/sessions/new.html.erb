@@ -1,8 +1,8 @@
-
 <%= flash[:error] %>
-<p>会員の方はこちらからログイン</p>
+<h2>会員の方はこちらからログイン</h2>
 
 <%= form_for(resource, as: resource_name, url: customer_session_path) do |f| %>
+
     <div class="field">
       <%= f.label :email ,"メールアドレス"%><br />
       <%= f.email_field :email, autofocus: true %>
@@ -15,17 +15,17 @@
 
     <% if devise_mapping.rememberable? %>
       <div class="field">
-        <%= f.label :remember_me, "=>パスワードを忘れた方はこちら"%><br />
-        <%= f.check_box :remember_me %>
+        <%=link_to "=>パスワードを忘れた方はこちら",new_customer_password_path%><br />
       </div>
     <% end %>
 
     <div class="actions">
-      <%= f.submit "ログイン" %>
+      <%= f.submit "ログイン",class: "btn btn-primary" %>
     </div>
 <% end %>
 
 <h2>登録がお済みでない方</h2>
+<%= link_to 'こちら', new_customer_registration_path%>
+<p>から新規登録を行ってください。</p>
 
 
-<%= render "customers/shared/links" %>
