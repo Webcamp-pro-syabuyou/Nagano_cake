@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
 
 
   def index
-      @genres = Genre.where(is_genres_status: true)
+      @genres = Genre.where(is_active: true)
      	# もしURLに[:genre_id]が含まれていたら
     	if params[:genre_id]
     		# その[:genre_id]のデータをGenreから@genreに入れて
