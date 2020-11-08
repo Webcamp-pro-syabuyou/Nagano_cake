@@ -19,15 +19,6 @@
      <nav>
        <ul>
 
-
-
-         <!-- if coustomer_sign_out -->
-
-         <li class="header-list-item"><%= link_to "About", homes_about_path %></li>
-         <a href ="#"><li class="header-list-item">商品一覧</li></a>
-         <li class="header-list-item"><%= link_to "新規登録", new_customer_registration_path %></li>
-         <li class="header-list-item"><%= link_to "ログイン", new_customer_session_path %></li>
-
          <!-- if coustomer_sign_in -->
 
 
@@ -54,11 +45,13 @@
          <!-- if admin_sign_in -->
 
          <% if admin_signed_in? %>
+         
          <a href ="#"><li class="header-list-item">商品一覧</li></a>
          <a href ="#"><li class="header-list-item">会員一覧</li></a>
          <a href ="#"><li class="header-list-item">注文履歴一覧</li></a>
          <a href ="#"><li class="header-list-item">ジャンル一覧</li></a>
          <li class="header-list-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+         
          <% end %>
        </ul>
      </nav>

@@ -1,9 +1,11 @@
 
 <div clss="row">
+<%= form_with model: @order, url: orders_path, local: true do |f| %>
 
 <!-- 購入商品-->
 
 <div class="col-md-9">
+
 <table class="table">
  <thead>
   <tr>
@@ -13,10 +15,32 @@
    <th>小計</th>
   </tr>
  </thead>
+
+ <%# @cart_products.each do |cart_product| %>
+
  <tbody>
-  <!-- each do -->
-  <tr><!-- cart-products --></tr>
+  <tr>
+   <td>
+       <%#= attachment_image_tag cart_product.product, :image, :fill, 50, 50, format:'jpeg', fallback:"no_image.jpg", size:"50x50" %>
+       <%#= cart_product.product.name %>
+   <td><%#= cart_product.product.price %></td>
+   <td>
+      <%#= form_with model: cart_product, url: cart_product_path(cart_product), local: true do |f| %>
+      <%#= f.hidden_field :id, :value => cart_product.id %>
+      <%#= f.text_field :quantity %>
+      <%#= f.submit "変更", class: "btn btn-primary" %>
+      <%# end %>
+   </td>
+   <td>
+    <%#= cart_product.quantity * cart_product.product.price %></td>
+   <td>
+    <%#= link_to cart_product_path(cart_product), method: :delete do %>
+    <!--<button class="btn btn-danger">削除する</button>-->
+    <%# end %>
+   </td>
+  </tr>
  </tbody>
+ <%# end %>
 </table>
 
 </div>
@@ -26,20 +50,19 @@
 <div class="col-md-3">
 
 <table class="table">
- <tbody>
   <tr>
    <th>送料</th>
-   <td>800</td>
+   <td><%= @postage %><%= f.hidden_field :postage, :value => @order.postage %></td>
   </tr>
   <tr>
    <th>商品合計</th>
-   <td><!-- 商品合計 --></td>
+   <td><%= @total_price %></td>
   </tr>
   <tr>
    <th>請求金額</th>
-   <tr><!-- 請求金額 --></tr>
+   <td><%= @total_price + @postage %></td>
   </tr>
-  </tbody>
+
 </table>
 
 </div>
@@ -47,14 +70,12 @@
 
 <!-- 支払い方法 -->
 
-<%= form_with model: @order, url: orders_path, local: true do |f| %>
-
 <div class="row">
  <div class="col-md-12">
 
 <div class="cofind-pay-method">
 <h3>支払方法</h3>
-<p><!-- クレジット or 現金振込 -->
+<p>
 <%= @order.payment_method %>
 <%= f.hidden_field :payment_method, :value => @order.payment_method %>
 </p>
@@ -63,7 +84,6 @@
 <!-- 配送先 -->
 
 <div class="confind-delivery_address">
-
  <h3>お届け先</h3>
  <p><%= @order.postalcode %></p>
  <%= f.hidden_field :postalcode, :value => @order.postalcode %>
@@ -71,13 +91,14 @@
  <%= f.hidden_field :delivery_address, :value => @order.delivery_address %>
  <p><%= @order.delivery_name %></p>
  <%= f.hidden_field :delivery_name, :value => @order.delivery_name %>
-
 </div>
 
+<!-- hidden_field -->
 
+<%= f.hidden_field :order_status, :value => @order.order_status %>
 <%= f.submit '購入を確定する', class:"btn btn-success" %>
+
 <% end %>
 
+ </div>
 </div>
-</div>
-
