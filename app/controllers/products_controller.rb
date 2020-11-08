@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
     		@products_all = @genre.products.order(created_at: :desc).where(status: true)
         else
         # whereメソッドを使うときは booleanの値を整数に。全件抽出する（あとでカウントしたいので）
-        @products_all = Product.joins(:name).where('sales_status = 1 and genres.is_genres_status = 1')
+        @products_all = Product.joins(:name).where('is_active = 1 and genres.is_active = 1')
         # binding.pry
         end
       # 8件でページをわける

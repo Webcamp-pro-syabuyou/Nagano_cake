@@ -11,7 +11,10 @@ Rails.application.routes.draw do
   resource :customers,except: :create do
   resources :addresses
    end
-  resources :products
+  resources :products, only: [:index,:show]
+  resources :genres, only: [:index] do
+    resources :products, only: [:index]
+  end
   resources :order_products
   resources :cart_products, only:[:create, :index, :update, :destroy]
   resources :orders do
@@ -32,14 +35,10 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :orders, only:[:index, :show, :update]
     resources :customers
-    resources :products
+    resources :products, only: [:index,:new,:create,:show,:edit,:update]
     resources :order_products, only: [:update] do
-      resources :genres
+      resources :genres, only: [:index,:edit,:create,:update]
     end
     get 'orders/number' => 'orders#number'
   end
 end
-
-
-
-

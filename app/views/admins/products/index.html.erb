@@ -24,7 +24,7 @@
               <td><%= link_to product.name,admin_product_path(product.id) %></td>
               <td><%= disp_price(product.price) %></td>
               <td><%= product.genre.name %></td>
-              <td><%= t("enums.product.status.#{product.sales_status}") %></td>
+              <td><%= t("enums.product.status.#{product.is_active}") %></td>
             </tr>
           <% end %>
         </tbody>
