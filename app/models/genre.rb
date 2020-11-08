@@ -3,5 +3,5 @@ class Genre < ApplicationRecord
   
   enum is_active: {true: true, false: false}
   validates :name ,presence: true
-  validates :is, presence: true
+  validates :is_active, presence: true
 end
