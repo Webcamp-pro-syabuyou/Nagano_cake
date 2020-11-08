@@ -4,8 +4,8 @@ class Address < ApplicationRecord
   # バリデーション------------------------------------------
   validates :postalcode ,presence: :true
   # validates :address ,presence: :true ,format: {
-  #               with: /^[0-9０-９]+$/,
-  #               message: "数字7ケタで入力して下さい"
+  #               with: /\A[0-9０-９]\z/,
+  #               message: "数字で入力して下さい"
   #               }
   validates :delivery_name ,presence: :true
   #---------------------------------------------------------   

@@ -1,52 +1,60 @@
 <h2>新規会員登録</h2>
 
 <%= form_with model: @customer, url: customer_registration_path, local: true do |f| %>
-
-
-  <div class='row'>
-  <div class='col-xs-3'>
-    <p>名前</p>
-    <p>フリガナ</p>
-    <p>メールアドレス</p>
-    <p>郵便番号（ハイフンなし）</p>
-    <p>住所</p>
-    <p>電話番号（ハイフンなし）</p>
-    <p>パスワード（6文字以上)</p>
-    <p>パスワード（確認用）</p>
-  </div>
-
-   <div class='col-xs-1'>
-    <p>(姓)</p>
-    <p>(セイ)</p>
-  </div>
-
-   <div class='col-xs-3'>
-      <%= f.text_field :family_name, autofocus: true %>姓
-      <%= f.text_field :family_name_kana, autofocus: true %>セイ
-      <%= f.email_field :email, autofocus: true %>メール
-      <%= f.text_field :postalcode, autofocus: true %>郵便番号
-      <%= f.text_field :address, autofocus: true %>住所
-      <%= f.text_field :tel, autofocus: true %>電話
-      <%= f.password_field :password, autocomplete: "off" %>パス
-      <%= f.password_field :password_confirmation, autocomplete: "off"%>確認
-   </div>
-
-    <div class='col-xs-1'>
-      <p>(名)</p>
-      <p>(メイ)</p>
-    </div>
-
-    <div class='col-xs-3'>
-      <%= f.text_field :first_name, autofocus: true %>
-      <%= f.text_field :first_name_kana, autofocus: true %>
-    </div>
-    </div>
+<table>
+  <tbody>
+    <tr>
+    <th>姓</th>
+    <td><%= f.text_field :family_name, autofocus: true %></td>
+    </tr>
+    　<tr>
+　　　  <th>名前</th>
+      <td><%= f.text_field :first_name, autofocus: true %></td>
+      </tr>
+    <tr>
+      <th>姓(フリガナ)</th>
+      <td><%= f.text_field :family_name_kana, autofocus: true %></td>
+    </tr>
+     <tr>
+　　    <th>名前（フリガナ）</th>
+      <td><%= f.text_field :first_name_kana, autofocus: true %></td>
+      </tr>
+    <tr>
+      <th>メール</th>
+      <td><%= f.email_field :email, autofocus: true %></td>
+    </tr>
+    <tr>
+      <th>郵便番号</th>
+       <td><%= f.text_field :postalcode, autofocus: true %></td>
+    </tr>
+    <tr>
+    <th>住所</th>
+    <td><%= f.text_field :address, autofocus: true %></td>
+    </tr>
+    <tr>
+      <th>電話番号</th>
+      <td><%= f.text_field :tel, autofocus: true %></td>
+    </tr>
+    <tr>
+      <th>パスワード</th>
+      <td><%= f.password_field :password, autocomplete: "off" %></td>
+    </tr>
+    <tr>
+      <th>パスワード（確認）</th>
+      <td><%= f.password_field :password_confirmation, autocomplete: "off"%></td>
+    </tr>
+      </tbody>
+  </table>
 
   <div class="actions">
     <%= f.submit "新規登録" ,class: "btn btn-success"%>
   </div>
-
 <% end %>
-<p>既に登録済みの方</p>
-こちら<%= render "customers/shared/links"%>
-<p>からログインしてください</p>
+
+
+<h2>既に登録済みの方</h2>
+ <%= link_to 'こちら',customer_registration_path %>からログインしてください
+
+
+
+

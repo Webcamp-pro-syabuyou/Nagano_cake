@@ -13,7 +13,7 @@ class AddressesController < ApplicationController
     @address.customer_id = current_customer.id
     # アドレス変数にユーザIDを紐づける
     if @address.save
-    redirect_to customers_addresses_path, notice: "サクセスメッセージ"
+    redirect_to customers_addresses_path, notice: "配送先を登録しました。"
     else
       @addresses = Address.all
       render 'index'
@@ -27,7 +27,7 @@ class AddressesController < ApplicationController
   def update
     @address = Address.find(params[:id])
     if @address.update(address_params)
-      redirect_to customers_addresses_path, notice: "サクセスメッセージ"
+      redirect_to customers_addresses_path, notice: "配送先情報を更新しました。"
     else
       @addresses = Address.all
       render 'index'
@@ -39,7 +39,7 @@ class AddressesController < ApplicationController
     @address = Address.find(params[:id])
     @address.customer_id = current_customer.id
     @address.destroy
-    redirect_to customers_addresses_path,notice: "サクセスメッセージ"
+    redirect_to customers_addresses_path,notice: "配送先を削除しました。"
   end
   
   private
