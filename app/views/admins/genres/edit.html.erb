@@ -5,10 +5,10 @@
         <%= form_with url: admin_genre_path(@genre),model:@genre,local: true do |f| %>
           <%= render 'layouts/error_messages', model: @genre %>
           <%= f.text_field :name%>
-          <%= f.radio_button :is_genres_status, true %>
-          <%= f.label :is_genres_status, t('enums.name.is_genres_status.true') %>
-          <%= f.radio_button :is_genres_status, false %>
-          <%= f.label :is_genres_status, t('enums.name.is_genres_status.false') %>
+          <%= f.radio_button :is_active, true %>
+          <%= f.label :is_active, t('enums.name.is_active.true') %>
+          <%= f.radio_button :is_active, false %>
+          <%= f.label :is_active, t('enums.name.is_active.false') %>
           <%= f.submit "変更を保存する",class: "btn btn-primary" %>
         <% end %>  
     </div>
