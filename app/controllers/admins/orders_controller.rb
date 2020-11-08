@@ -1,12 +1,13 @@
 class Admins::OrdersController < ApplicationController
 
   def number
+    #@order_count = Order.where(order_id: @order.id).count
   end
-  
+
   def index
     @orders = Order.all
   end
-  
+
   def show
     @order = Order.find_by(id: params[:id])
     # @order = Order.find(params [:id])ではなぜでないの？
@@ -14,7 +15,7 @@ class Admins::OrdersController < ApplicationController
     # customer = Customer.find(id)
     # @order_products = customer.purchased_products
   end
-  
+
   def update
     # binding.pry
     order = Order.find(params[:order][:id])

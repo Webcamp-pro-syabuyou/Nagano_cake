@@ -64,7 +64,7 @@ class OrdersController < ApplicationController
     if @order.save
     redirect_to orders_thanks_path
     else
-     render 'confirm'
+     render 'new'
     end
   end
 
