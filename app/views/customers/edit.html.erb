@@ -1,6 +1,6 @@
 <p>登録情報編集</p>
 <%= form_with(model: current_customer, url:customers_path(current_customer),local:true) do |f|%>
-<table>
+<table class = "table">
   <tbody>
     <tr>
       <td>名前</td>
@@ -20,16 +20,22 @@
       <td>メールアドレス</td>
       <td>&nbsp;</td>
       <td><%= f.text_field :email%></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
     </tr>
     <tr>
       <td>住所</td>
       <td>&nbsp;</td>
       <td><%= f.text_field :address%></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
     </tr>
     <tr>
       <td>電話番号（ハイフンなし）</td>
       <td>&nbsp;</td>
       <td><%= f.text_field :tel%></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
     </tr>
   </tbody>
 </table>

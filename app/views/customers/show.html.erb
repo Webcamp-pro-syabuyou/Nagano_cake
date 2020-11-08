@@ -2,8 +2,10 @@
 <p>マイページ</p>
 登録情報　
 <%=link_to"編集する", edit_customers_path(current_customer) ,class:"btn btn-primary"%>
-<%=link_to"パスワードを変更する", edit_customer_password_path , class:"btn btn-primary"%>
-<table>
+<!--"パスワードを変更する"への遷移の実装については要件対象外であることメンターさんへ確認済（全て終わり余裕があれば実装してくださいとのこと）。現段階では以下のコードでルートパスへ飛ぶ-->
+<%=link_to"パスワードを変更する", edit_customer_password_path, class:"btn btn-primary"%>
+
+<table class = "table">
   <tr>
     <td>氏名</td>   
     <td><%=current_customer.family_name%></td>   
@@ -14,21 +16,25 @@
     <td><%=current_customer.family_name_kana%></td>    
     <td><%=current_customer.first_name_kana%><td>
   </tr>
-    <tr>
+  <tr>
     <td>郵便番号</td>   
-    <td><%=current_customer.postalcode%></td>    
+    <td><%=current_customer.postalcode%></td>   
+    <td>&nbsp;</td>
   </tr>
     <tr>
     <td>住所</td>   
     <td><%=current_customer.address%></td>    
+    <td>&nbsp;</td>
   </tr>
     <tr>
     <td>電話番号</td>   
     <td><%=current_customer.tel%></td>    
+    <td>&nbsp;</td>
   </tr>
     <tr>
     <td>メールアドレス</td>   
     <td><%=current_customer.email%></td>    
+    <td>&nbsp;</td>
   </tr>
 </table>
 
