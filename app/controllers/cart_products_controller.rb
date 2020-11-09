@@ -22,7 +22,7 @@ class CartProductsController < ApplicationController
   def index
     @cart_products = current_customer.cart_products
     @cart_product = CartProduct.new
-    
+
     array = []
     current_customer.cart_products.all.each do |cart_product|
       array << cart_product.product.price * cart_product.quantity

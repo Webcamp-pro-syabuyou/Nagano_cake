@@ -17,7 +17,7 @@
           <thead>
             <tr>
               <th>商品名</th>
-              <th>単価（税抜き）</th>
+              <th>単価（税抜）</th>
               <th>数量</th>
               <th>小計</th>
               <th></th>
@@ -29,7 +29,9 @@
                 <%= attachment_image_tag cart_product.product, :image, :fill, 50, 50, format:'jpeg', fallback:"no_image.jpg", size:"50x50" %>
                 <%= cart_product.product.name %>
               </td>
-              <td><%= cart_product.product.price %></td>
+              <td>
+                <%= (cart_product.product.price ) %>
+              </td>
               <td>
                 <%= form_with model: cart_product, url: cart_product_path(cart_product), local: true do |f| %>
                   <%= f.hidden_field :id, :value => cart_product.id %>
@@ -37,7 +39,7 @@
                   <%= f.submit "変更", class: "btn btn-primary" %>
                 <% end %>
               </td>
-              <td><%= cart_product.quantity * cart_product.product.price %></td>
+              <td><%= (cart_product.product.price * 1.1 * cart_product.quantity).floor %></td>
               <td>
                 <%= link_to cart_product_path(cart_product), method: :delete do %>
                   <button class="btn btn-danger">削除する</button>

@@ -1,5 +1,6 @@
 class Admins::GenresController < ApplicationController
-  before_action :authenticate_admins!
+  # before_action :authenticate_admin!
+
   def index
     @genre = Genre.new
     @genres = Genre.page(params[:page]).per(10)
@@ -8,8 +9,8 @@ class Admins::GenresController < ApplicationController
   def create
     @genre = Genre.new(genre_params)
     if @genre.save
-      flash[:success] = "ジャンルを登録しました。"
-      redirect_to admin_genres_path
+      flash[:notice] = "ジャンルを登録しました。"
+      redirect_to admins_genres_path
     else
       @genres = Genre.page(params[:page]).per(10)
       render 'index'
@@ -21,19 +22,17 @@ class Admins::GenresController < ApplicationController
   end
 
   def update
-    genre = Genre.find(params[:id])
-    if genre.update(genre_params)
-      redirect_to admin_genres_path
+    @genre = Genre.find(params[:id])
+    if @genre.update(genre_params)
+      redirect_to admins_genres_path
     else
-      @genre = genre
       render 'edit'
     end
   end
 
-private
+  private
   def genre_params
-    params.require(:genre).permit(:name,:is_active)
+    params.require(:genre).permit(:name, :is_active)
   end
-
 
 end
