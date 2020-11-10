@@ -77,13 +77,13 @@ class OrdersController < ApplicationController
       @cart_product.product_price = cart_product.quantity * cart_product.product.price
     @cart_product.save
     end
-    #@customer.cart_product.destroy_all
+    current_customer.cart_products.destroy_all
     redirect_to orders_thanks_path
   end
 
   def show
     @order = Order.find(params[:id])
-    @postage = 800
+
 
     @cart_products = current_customer.cart_products
      array = []

@@ -1,5 +1,5 @@
 class Admins::OrdersController < ApplicationController
-
+  before_action :authenticate_admin!
   def number
 
     range = Date.today.beginning_of_day..Date.today.end_of_day
@@ -8,7 +8,7 @@ class Admins::OrdersController < ApplicationController
   end
 
   def index
-    @order = Order.all
+    @orders = Order.all
   end
 
   def show
