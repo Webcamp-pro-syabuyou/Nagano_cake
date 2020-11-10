@@ -8,7 +8,7 @@ class Product < ApplicationRecord
   
   validates :name, presence: true
   validates :price, presence: true
-  validates :sales_status, presence: true
+  validates :is_active, presence: true
   validates :genre_id, presence: true
   
   def tax_price
