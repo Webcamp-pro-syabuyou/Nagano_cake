@@ -21,8 +21,12 @@
           <%= order.delivery_address %><br/>
           <%= order.delivery_name %>
         </td>
-        <td> <%#= @cart_product.product.name %></td>
-        <td><%= @total_price + @postage %>円</td>
+        <td>
+        <% order.order_products.each do |product| %>
+        <%= product.product.name %>
+        <% end %>
+        </td>
+        <td><%= order.total_price %>円</td>
         <td><%= order.order_status %></td>
         <td><%= link_to '表示する', order_path(order.id) %></td>
       </tr>

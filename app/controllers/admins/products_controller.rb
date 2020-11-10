@@ -20,12 +20,11 @@ class Admins::ProductsController < ApplicationController
   end
 
   def create
-    product = Product.new(product_params)
-    if product.save
+    @product = Product.new(product_params)
+    if @product.save
       flash[:success] = "商品を登録しました"
       redirect_to admins_products_path
     else
-      @product = product
       render 'new'
     end
   end
@@ -49,7 +48,7 @@ class Admins::ProductsController < ApplicationController
 
 private
   def product_params
-    params.require(:product).permit(:image,:name,:price,:introduction,:genre_id,:is_active)
+    params.require(:product).permit(:image,:name,:price,:introduction,:is_active)
   end
 
 end

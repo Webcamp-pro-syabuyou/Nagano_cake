@@ -2,9 +2,9 @@
   <%= form_with model: @product, url: admins_products_path, local: true do |f| %>
   <div class="row">
     <h3 class="under-border">商品 新規登録画面</h3>
-      <%#= render 'layouts/error_messages', model: @product %>
+      <%= render 'layouts/error_messages', model: @product %>
       <div class="col-xs-4">
-        <%#= attachment_image_tag @product, :image, :limit, 300, 300, fallback: "no-image.jpg",size: "300x300",id:"prev_img" %>
+        <%= attachment_image_tag @product, :image, :limit, 300, 300, fallback: "no-image.jpg",size: "300x300",id:"prev_img" %>
         <div class="col-xs-7 col-xs-offset-1">
           <label for="post_img" class= "btn btn-primary btn-block label-img">
           <%= f.attachment_field :image,id: :post_img, class: "hidden" %>
@@ -19,7 +19,7 @@
             <%= f.label :name, "商品名" %>
           </div>
           <div class="col-xs-6">
-            <%= f.text_field :name,class: "form-control" %>
+            <%= f.text_field :name, class: "form-control" %>
           </div>
         </div>
 
@@ -28,16 +28,16 @@
             <%= f.label :introduction, "商品説明" %>
           </div>
           <div class="col-xs-6">
-            <%= f.text_area :introduction,class: "form-control" %>
+            <%= f.text_area :introduction, class: "form-control" %>
           </div>
         </div>
 
         <div class="form-group row">
           <div class="col-xs-2">
-            <%= f.label :genre_id, "ジャンル"%>
+            <%#= f.label :genre_id, "ジャンル"%>
           </div>
           <div class="col-xs-6">
-            <%= f.collection_select :genre_id, Genre.all, :id,:name,{prompt: "--選択してください--"},class: "form-control" %>
+            <%#= f.collection_select :genre_id, Genre.all, :id,:name,{prompt: "--選択してください--"},class: "form-control" %>
           </div>
         </div>
 
@@ -47,14 +47,14 @@
           </div>
 
           <div class="col-xs-6">
-            <%= f.number_field :price,class: "form-control" %>
+            <%= f.number_field :price, class: "form-control" %>
           </div>
         </div>
 
         <!-- 変換後のkeyを取得、valueは本来のvalue -->
         <div class="form-group row">
           <div class="col-xs-2">
-            <%= f.label :is_active ,"販売ステータス" %>
+            <%#= f.label :is_active ,"販売ステータス" %>
           </div>
           <div class="col-xs-6">
             <%= f.select :is_active, [['販売中',true],['販売停止中', false]] ,{prompt: "--選択してください--"},class: "form-control" %>

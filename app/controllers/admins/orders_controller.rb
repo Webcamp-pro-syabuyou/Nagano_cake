@@ -1,7 +1,9 @@
 class Admins::OrdersController < ApplicationController
 
   def number
+
     range = Date.today.beginning_of_day..Date.today.end_of_day
+
     @order = Order.where(created_at: range).count
   end
 

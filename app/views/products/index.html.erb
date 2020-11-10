@@ -21,7 +21,7 @@
 
       <div class="row">
         <strong>
-          全<%= @products.count %>件
+          全<%= @products.length %>件
         </strong>
       </div>
 
@@ -42,22 +42,20 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>  
 
 
 
 
 
-
-    <!-- ページネーション -->
- <!--<div class="container">-->
- <!--   <div class="row">-->
- <!--    <div class="col-xs-3">-->
- <!--    </div>-->
- <!--    <div class="col-xs-6">-->
- <!--        paginate @products -->
- <!--        コメントアウトのため括弧も消してます-->
- <!--    </div>-->
- <!--   </div>-->
- <!--</div>-->
+ <!-- ページネーション -->
+ <div class="container">
+    <div class="row">
+     <div class="col-xs-3">
+     </div>
+     <div class="col-xs-6">
+        <%= paginate @products %>
+     </div>
+    </div>
+ </div>
     <!-- ページネーション -->
