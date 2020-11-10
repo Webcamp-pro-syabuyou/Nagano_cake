@@ -21,12 +21,12 @@
        <ul>
 
          <!-- if coustomer_sign_in -->
-
          <% if customer_signed_in? %>
 
          <a href="#"><li class="header-list-item"><%= link_to "マイページ", customers_path(current_customer) %></li></a>
          <a href ="#"><li class="header-list-item"><%= link_to "商品一覧", products_path %></li></a>
          <a href ="#"><li class="header-list-item"><%= link_to "カート", cart_products_path %></li></a>
+
          <li class="header-list-item"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
 
          <!-- if admin_sign_in -->

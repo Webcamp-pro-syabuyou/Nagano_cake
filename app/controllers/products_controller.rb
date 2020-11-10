@@ -8,6 +8,7 @@ class ProductsController < ApplicationController
     		# その[:genre_id]のデータをGenreから@genreに入れて
     		@genre = Genre.find(params[:genre_id])
   	    # @genreに紐付いた商品で販売可の商品を持ってくるイメージ。全件抽出する（あとでカウントしたいので）
+
     		@products = @genre.products.order(created_at: :desc).where(is_active: true).page(params[:page])
     		#binding.pry
         else
@@ -18,13 +19,14 @@ class ProductsController < ApplicationController
         end
       # 8件でページをわける
 
+
       
  end
 
 
     def show
         @product = Product.find(params[:id])
-        @genres = Genre.where(display_status: true)
+        @genres = Genre.where(is_active: true)
         @cart_product = CartProduct.new
     end
 

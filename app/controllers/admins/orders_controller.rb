@@ -1,12 +1,14 @@
 class Admins::OrdersController < ApplicationController
 
   def number
-    range = Date.yesterday.beginning_of_day..Date.yesterday.end_of_day
+
+    range = Date.today.beginning_of_day..Date.today.end_of_day
+
     @order = Order.where(created_at: range).count
   end
 
   def index
-    @orders = Order.all
+    @order = Order.all
   end
 
   def show

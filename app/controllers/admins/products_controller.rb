@@ -1,5 +1,5 @@
 class Admins::ProductsController < ApplicationController
-  before_action :authenticate_admin!
+  # before_action :authenticate_admin!
 
   def index
 
@@ -23,7 +23,7 @@ class Admins::ProductsController < ApplicationController
     @product = Product.new(product_params)
     if @product.save
       flash[:success] = "商品を登録しました"
-      redirect_to admin_products_path
+      redirect_to admins_products_path
     else
       render 'new'
     end
@@ -36,13 +36,12 @@ class Admins::ProductsController < ApplicationController
 
 
   def update
-    product = Product.find(params[:id])
+    @product = Product.find(params[:id])
     # binding.pry
 
-    if product.update(product_params)
-      redirect_to admin_product_path(params[:id])
+    if @product.update(product_params)
+      redirect_to admins_product_path(params[:id])
     else
-      @product = Product.find(params[:id])
       render 'edit'
     end
   end
