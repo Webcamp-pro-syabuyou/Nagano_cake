@@ -5,10 +5,10 @@
 	  	<%= link_to "すべての商品", products_path %>
 	    <% genres.each do |genre| %>
 	  	    <div class="genru-text">
-				<%= link_to genre.name, genre_products_path(genre) %>
+				<%= link_to genre.name, products_path(genre_id: genre.id) %>
 		  	</div>
 		  	<% end %>
 	　　</li>
 	  
 	</ul>
-</div
+</div>

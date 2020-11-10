@@ -13,7 +13,6 @@ Rails.application.routes.draw do
    end
   resources :products, only: [:index,:show]
   resources :genres, only: [:index] do
-    resources :products, only: [:index]
   end
   resources :order_products
   resources :cart_products, only:[:create, :index, :update, :destroy]
@@ -36,9 +35,8 @@ Rails.application.routes.draw do
     resources :orders, only:[:index, :show, :update]
     resources :customers
     resources :products, only: [:index,:new,:create,:show,:edit,:update]
-    resources :order_products, only: [:update] do
-      resources :genres, only: [:index,:edit,:create,:update]
-    end
+    resources :order_products, only: [:update]
+    resources :genres, only: [:index,:edit,:create,:update]
     get 'orders/number' => 'orders#number'
   end
 end

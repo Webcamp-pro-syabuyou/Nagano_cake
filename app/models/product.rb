@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
+  enum is_active: {true: true, false: false}
+  
   belongs_to :genre
-
   has_many :cart_products, dependent: :destroy
   has_many :order_products, dependent: :destroy
   
@@ -8,7 +9,7 @@ class Product < ApplicationRecord
   
   validates :name, presence: true
   validates :price, presence: true
-  validates :sales_status, presence: true
+  validates :is_active, presence: true
   validates :genre_id, presence: true
   
   def tax_price
