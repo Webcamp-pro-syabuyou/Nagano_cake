@@ -13,14 +13,14 @@ class ProductsController < ApplicationController
     		#binding.pry
         else
         # whereメソッドを使うときは booleanの値を整数に。全件抽出する（あとでカウントしたいので）
-        
+
         @products = Product.where(is_active: true).page(params[:page])
-        
+
         end
       # 8件でページをわける
 
 
-      
+
  end
 
 

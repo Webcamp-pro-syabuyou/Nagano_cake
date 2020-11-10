@@ -1,5 +1,5 @@
 class Admins::ProductsController < ApplicationController
-  # before_action :authenticate_admin!
+  before_action :authenticate_admin!
 
   def index
 
@@ -48,7 +48,7 @@ class Admins::ProductsController < ApplicationController
 
 private
   def product_params
-    params.require(:product).permit(:image,:name,:price,:introduction,:is_active)
+    params.require(:product).permit(:image,:name,:price,:introduction,:is_active,:genre_id)
   end
 
 end
