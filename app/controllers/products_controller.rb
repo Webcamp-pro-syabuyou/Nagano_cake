@@ -17,8 +17,10 @@ class ProductsController < ApplicationController
         
         end
       # 8件でページをわける
+
       
  end
+
 
     def show
         @product = Product.find(params[:id])
