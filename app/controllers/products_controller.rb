@@ -16,7 +16,6 @@ class ProductsController < ApplicationController
         end
       # 8件でページをわける
       @products = @products_all.page(params[:page]).per(8)
-
   end
 
     def show

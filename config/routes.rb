@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root 'homes#top'
   get 'homes/about' => 'homes#about'
   delete 'cart_products/destroy_all' => 'cart_products#destroy_all'
-  get 'customers/resign' => 'custmers#resign'
+  get 'customers/resign' => 'customers#resign'
   patch 'customers/resign' => 'customers#resign_update'
   get 'orders/thanks' => 'orders#thanks' 
   
