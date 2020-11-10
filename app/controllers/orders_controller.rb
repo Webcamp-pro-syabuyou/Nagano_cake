@@ -3,16 +3,14 @@ class OrdersController < ApplicationController
 
   def index
     @orders = current_customer.orders.all
-   array = []
+    array = []
      current_customer.cart_products.all.each do |cart_product|
       array << cart_product.product.price * cart_product.quantity
      end
      @total_price = (array.sum * 1.1).floor
-     @postage = 800
-
+     @postage = @total_price + 800
 
   # @cart_product = current_customer.cart_product
-
   end
 
   def new
@@ -23,13 +21,14 @@ class OrdersController < ApplicationController
 
 
   def confirm
-     @postage = 800
-     @cart_products = current_customer.cart_products
-     array = []
-     current_customer.cart_products.all.each do |cart_product|
+    @cart_products = current_customer.cart_products
+    @cart_product = CartProduct.new
+    array = []
+    current_customer.cart_products.all.each do |cart_product|
       array << cart_product.product.price * cart_product.quantity
-     end
-     @total_price = (array.sum * 1.1).floor
+    end
+    @cart_price = (array.sum * 1.1).floor
+    @total_price = (array.sum * 1.1).floor + 800
 
      return if @order.valid?
        @payment_method = params[:order][:payment_method]
@@ -52,20 +51,34 @@ class OrdersController < ApplicationController
   end
 
   def create
+
+    array = []
+     current_customer.cart_products.all.each do |cart_product|
+      array << cart_product.product.price * cart_product.quantity
+     end
+
     @order = Order.new(
       postalcode: params[:order][:postalcode],
       customer_id: current_customer.id,
       delivery_address: params[:order][:delivery_address],
       delivery_name: params[:order][:delivery_name],
       payment_method: params[:order][:payment_method],
+      order_status: params[:order][:order_status],
       postage: params[:order][:postage],
-      order_status: params[:order][:order_status])
-
-    if @order.save
-    redirect_to orders_thanks_path
-    else
-     render 'new'
+      total_price: params[:order][:total_price])
+    @order.save
+    # @customer = current_customer
+    @carts = current_customer.cart_products
+    @carts.each do |cart_product|
+      @cart_product = @order.order_products.new
+      @cart_product.order_id = @order.id
+      @cart_product.quantity = cart_product.quantity
+      @cart_product.product_id = cart_product.product_id
+      @cart_product.product_price = cart_product.quantity * cart_product.product.price
+    @cart_product.save
     end
+    #@customer.cart_product.destroy_all
+    redirect_to orders_thanks_path
   end
 
   def show
@@ -87,7 +100,6 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:customer_id, :postalcode, :delivery_address, :delivery_name, :payment_method, :total_price, :order_status, :postage)
-
   end
 
   def confirm_params

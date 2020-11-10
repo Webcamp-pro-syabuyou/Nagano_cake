@@ -12,6 +12,7 @@
   <body>
 
     <!-- header -->
+
     <header>
       <div class="header">
    <div class="logo">Logo</div>
@@ -21,38 +22,34 @@
 
          <!-- if coustomer_sign_in -->
 
-
          <% if customer_signed_in? %>
 
-         <a href="#"><li class="header-list-item">マイページ</li></a>
-         <a href ="#"><li class="header-list-item">商品一覧</li></a>
-         <a href ="#"><li class="header-list-item">カート</li></a>
+         <a href="#"><li class="header-list-item"><%= link_to "マイページ", customers_path(current_customer) %></li></a>
+         <a href ="#"><li class="header-list-item"><%= link_to "商品一覧", products_path %></li></a>
+         <a href ="#"><li class="header-list-item"><%= link_to "カート", cart_products_path %></li></a>
          <li class="header-list-item"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
 
+         <!-- if admin_sign_in -->
 
-         <!-- if coustomer_sign_out -->
+         <% elsif admin_signed_in? %>
+
+         <a href ="#"><li class="header-list-item"><%= link_to "商品一覧", admins_products_path %></li></a>
+         <a href ="#"><li class="header-list-item"><%= link_to "会員一覧", admins_customers_path %></li></a>
+         <a href ="#"><li class="header-list-item"><%= link_to "注文履歴一覧", admins_orders_path %></li></a>
+         <a href ="#"><li class="header-list-item"><%#= link_to "ジャンル一覧", admins_genres_path %></li></a>
+         <li class="header-list-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+
+         <!-- if sign_out -->
 
          <% else %>
 
          <li class="header-list-item"><%= link_to "About", homes_about_path %></li>
-         <a href ="#"><li class="header-list-item">商品一覧</li></a>
+         <a href ="#"><li class="header-list-item"><%= link_to "商品一覧", products_path %></li></a>
          <li class="header-list-item"><%= link_to "新規登録", new_customer_registration_path %></li>
          <li class="header-list-item"><%= link_to "ログイン", new_customer_session_path %></li>
 
-
         <% end %>
 
-         <!-- if admin_sign_in -->
-
-         <% if admin_signed_in? %>
-         
-         <a href ="#"><li class="header-list-item">商品一覧</li></a>
-         <a href ="#"><li class="header-list-item">会員一覧</li></a>
-         <a href ="#"><li class="header-list-item">注文履歴一覧</li></a>
-         <a href ="#"><li class="header-list-item">ジャンル一覧</li></a>
-         <li class="header-list-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
-         
-         <% end %>
        </ul>
      </nav>
    </div>
@@ -64,12 +61,15 @@
         <%= flash[:notice] %>
       </div>
     <% end %>
-    
+
      <main>
        <div class="container">
-         
+
     <%= yield %>
        </div>
     </main>
+    <footer>
+      <div class=footer-text>©️inc.Shabuyou.NaganoCake</div>
+    </footer>
   </body>
 </html>
