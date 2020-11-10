@@ -1,6 +1,7 @@
 class CustomersController < ApplicationController
   # ログインユーザ以外はcustomerのパスに飛ばずにログイン画面へ
   before_action :authenticate_customer!
+  # before_action :ensure_correct_customer ,only: [:update, :resign_update]
   
   def show
   end
@@ -10,7 +11,7 @@ class CustomersController < ApplicationController
 
   def update
     if current_customer.update(customer_params)
-      redirect_to customers_path(current_customer), notice: "サクセスメッセージ"
+      redirect_to customers_path(current_customer), notice: "入力内容を保存しました"
     else
       render "edit"
     end
@@ -33,4 +34,12 @@ class CustomersController < ApplicationController
   def customer_params
     params.require(:customer).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :postalcode, :address, :tel)
   end
+  
+  # 他のユーザがurl入力で遷移してくるのを防ぐ
+  # def ensure_correct_customer
+  #   @customer = Customer.where(params[:id])
+  #   unless @customer == current_customer
+  #     redirect_to customers_path
+  #   end
+  # end
 end

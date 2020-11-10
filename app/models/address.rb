@@ -3,7 +3,8 @@ class Address < ApplicationRecord
   
   # バリデーション------------------------------------------
   validates :postalcode ,presence: :true
-  # validates :address ,presence: :true ,format: {
+  validates :address ,presence: :true 
+  # ,format: {
   #               with: /\A[0-9０-９]\z/,
   #               message: "数字で入力して下さい"
   #               }
