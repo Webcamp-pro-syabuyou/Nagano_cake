@@ -2,8 +2,7 @@
 
 <%= form_with model: @customer, url: customer_registration_path, local: true do |f| %>
 <%= render "admins/shared/error_messages", resource: resource %>
-<table>
-  <tbody>
+  <table>
     <tr>
     <th>姓</th>
     <td><%= f.text_field :family_name, autofocus: true %></td>
@@ -44,7 +43,6 @@
       <th>パスワード（確認）</th>
       <td><%= f.password_field :password_confirmation, autocomplete: "off"%></td>
     </tr>
-      </tbody>
   </table>
 
   <div class="actions">

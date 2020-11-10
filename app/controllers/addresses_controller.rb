@@ -1,7 +1,7 @@
 class AddressesController < ApplicationController
   # ログイン済ユーザに対してのみアクセスを許可（それ以外sign_inへ）
   before_action :authenticate_customer!
-  # before_action :ensure_correct_customer ,only:[:edit, :update, :destroy ]
+  before_action :ensure_correct_customer ,only:[:edit, :update, :destroy ]
   
   
   def index
@@ -23,7 +23,7 @@ class AddressesController < ApplicationController
   end
 
   def edit
-    @address = Address.where(params[:id]) 
+    @address = Address.find(params[:id]) 
   end
   
   def update
@@ -50,10 +50,11 @@ class AddressesController < ApplicationController
   end
   
   # 他のユーザがurl入力で遷移してくるのを防ぐ
-  # def ensure_correct_customer
-  #   @address = Address.find_by(id:params[:id])
-  #   if @address != current_customer.address.address
-  #     redirect_to customers_path
-  #   end
-  # end
+  def ensure_correct_customer
+    @address = Address.find(params[:id])
+    if @address.customer != current_customer
+      redirect_to customers_path
+    end
+  end
+
 end

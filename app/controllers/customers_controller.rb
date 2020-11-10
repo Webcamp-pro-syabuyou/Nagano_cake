@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController
   # ログインユーザ以外はcustomerのパスに飛ばずにログイン画面へ
   before_action :authenticate_customer!
-  # before_action :ensure_correct_customer ,only: [:update, :resign_update]
+  before_action :ensure_correct_customer ,only: [:update, :resign_update]
 
   def show
     @customer = current_customer
@@ -33,14 +33,14 @@ class CustomersController < ApplicationController
 
   private
   def customer_params
-    params.require(:customer).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :postalcode, :address, :tel)
+    params.require(:customer).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :postalcode, :address, :email,:tel)
   end
 
   # 他のユーザがurl入力で遷移してくるのを防ぐ
-  # def ensure_correct_customer
-  #   @customer = Customer.where(params[:id])
-  #   unless @customer == current_customer
-  #     redirect_to customers_path
-  #   end
-  # end
+  def ensure_correct_customer
+    @customer = Customer.find(params[:id])
+    if@customer != current_customer
+      redirect_to customers_path
+    end
+  end
 end

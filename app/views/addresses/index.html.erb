@@ -45,7 +45,7 @@
               <td><%= address.address%></td>
               <td><%= address.delivery_name %></td>
               <td>
-                <%= link_to"編集する",edit_customers_address_path(current_customer),class:"btn btn-primary"%>
+                <%= link_to"編集する",edit_customers_address_path(address),class:"btn btn-primary"%>
                 <%= link_to"削除する",customers_address_path(address), method: :delete, "data-confirm" => "本当に削除しますか？",class:"btn btn-danger"%>
                 <!--まとめて右寄せするには？-->
               </td>
