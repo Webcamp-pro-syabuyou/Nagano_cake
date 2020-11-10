@@ -33,11 +33,11 @@ Rails.application.routes.draw do
   }
 
   namespace :admins do
+    get 'orders/number' => 'orders#number'
     resources :orders, only:[:index, :show, :update]
     resources :customers
     resources :products, only: [:index,:new,:create,:show,:edit,:update]
     resources :order_products, only: [:update]
     resources :genres, only: [:index,:edit,:create,:update]
-    get 'orders/number' => 'orders#number'
   end
 end
