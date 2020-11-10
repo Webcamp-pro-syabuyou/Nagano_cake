@@ -23,7 +23,7 @@ class Admins::OrdersController < ApplicationController
     order = Order.find(params[:order][:id])
     order_status = params[:order][:order_status]
     if order.update(order_status: order_status)
-      flash[:notice] = "You have successfully updated order status"
+      flash[:notice] = "注文情報を更新しました"
       redirect_to request.referer
     end
     # <%= f.select :order_status, [["入金待ち",0],["入金確認",1,],["製作中",2],["発送準備中",3],["発送済み",4]] %>

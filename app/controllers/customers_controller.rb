@@ -1,18 +1,16 @@
 class CustomersController < ApplicationController
   # ログインユーザ以外はcustomerのパスに飛ばずにログイン画面へ
   before_action :authenticate_customer!
-  before_action :ensure_correct_customer ,only: [:update, :resign_update]
+  # before_action :ensure_correct_customer ,only: [:update, :resign_update]
 
   def show
     @customer = current_customer
   end
 
-  def edit
-  end
-
   def update
     if current_customer.update(customer_params)
-      redirect_to customers_path(current_customer), notice: "入力内容を保存しました"
+      flash[:notice] = "お客様情報を更新しました"
+      redirect_to customers_path(current_customer)
     else
       render "edit"
     end
@@ -26,7 +24,7 @@ class CustomersController < ApplicationController
     current_customer.update(is_deleted: true)
     #ログアウトさせる
     reset_session
-    # flash[:notice] =""
+    flash[:notice] = "ご利用ありがとうございました"
     redirect_to root_path
   end
 
@@ -37,10 +35,10 @@ class CustomersController < ApplicationController
   end
 
   # 他のユーザがurl入力で遷移してくるのを防ぐ
-  def ensure_correct_customer
-    @customer = Customer.find(params[:id])
-    if@customer != current_customer
-      redirect_to customers_path
-    end
-  end
+  # def ensure_correct_customer
+  #   @customer = Customer.find(params[:id])
+  #   if@customer != current_customer
+  #     redirect_to customers_path
+  #   end
+  # end
 end

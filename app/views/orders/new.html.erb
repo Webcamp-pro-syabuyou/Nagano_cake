@@ -2,7 +2,7 @@
 
 <div class="order-field">
  <%= form_with model: @order, url: confirm_orders_path, local: true do |f| %>
-
+ <%= render 'layouts/error_message', model: f.object %>
   <!-- 支払い方法選択フォーム -->
 
   <h4><%= f.label :payment_method, "支払方法" %></h4>

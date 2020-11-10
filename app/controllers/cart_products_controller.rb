@@ -11,7 +11,7 @@ class CartProductsController < ApplicationController
       cart_product.save
       redirect_to cart_products_path
     elsif @cart_product.save
-      flash[:notice] = "New Product was successfully added to cart."
+      flash[:notice] = "商品を登録しました"
       redirect_to cart_products_path
     else
       render "products/show"
@@ -35,9 +35,10 @@ class CartProductsController < ApplicationController
     @cart_product = CartProduct.find(params[:id])
     if params[:cart_product][:quantity] == "0"
       @cart_product.destroy
+      flash[:notice] = "商品を削除しました"
       redirect_to cart_products_path
     elsif @cart_product.update(quantity: params[:cart_product][:quantity])
-      flash[:notice] = "Quantity was successfully changed."
+      flash[:notice] = "商品数を変更しました"
       redirect_to cart_products_path
     else
       @cart_products = current_customer.cart_products
@@ -47,13 +48,13 @@ class CartProductsController < ApplicationController
 
   def destroy
     current_customer.cart_products.find(params[:id]).destroy
-    flash[:notice] = "You have successfully deleted the propduct"
+    flash[:notice] = "商品を削除しました"
     redirect_to cart_products_path
   end
 
   def destroy_all
     current_customer.cart_products.destroy_all
-    flash[:notice] = "You have successfully deleted the propducts"
+    flash[:notice] = "カート内全商品を削除しました"
     redirect_to cart_products_path
   end
 

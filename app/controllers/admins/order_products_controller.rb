@@ -8,7 +8,7 @@ class Admins::OrderProductsController < ApplicationController
     # string型のままupdateしてるけど、モデルファイルの記述のおかげで自動的に対応するintegerで保存される？
     # モデルファイルの記述の整数のinteger型か、valueである文字列のstring型ならどっちでも保存できそう？
     if order_product.update(product_status: product_status)
-      flash[:notice] = "You have successfully updated product status"
+      flash[:notice] = "注文商品情報を更新しました"
       redirect_to request.referer
     end
   end

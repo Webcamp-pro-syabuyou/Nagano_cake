@@ -6,10 +6,8 @@ class Product < ApplicationRecord
   attachment :image
 
   validates :name, presence: true
+  validates :introduction, presence: true
   validates :price, presence: true
-  # validates :is_active, inclusion: [true, false]
-  # validates :is_active, presence: true だとfalseが入ったときに弾かれてしまうので上の記述に変更
-  validates :genre_id, presence: true
 
   def tax_price
     (self.price * 1.1).floor
