@@ -29,6 +29,7 @@
 <!-- 全てまたは選択ジャンル別の商品表示-->
         <div class="row">
             <% @products.each do |product| %>
+              <% if product.genre.is_active == true %>
                 <div class="col-xs-3 mt-3 product-photo"> <!--1個ずつまとめてカラムを指定する-->
                     <div class="mx-auto imgWrap">
                     <%= link_to product_path(product) do %>
@@ -38,11 +39,12 @@
                     <strong><%= product.name %></strong><br>
                     <span><%= (product.price)%>円(税込)</span><br>
                 </div>
+              <% end %>
             <% end %>
         </div>
       </div>
     </div>
-  </div>  
+  </div>
 
 
 
