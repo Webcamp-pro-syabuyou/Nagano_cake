@@ -62,9 +62,9 @@ class OrdersController < ApplicationController
      current_customer.cart_products.all.each do |cart_product|
       array << cart_product.product.price * cart_product.quantity
      end
-     
-   
-      
+
+
+
     @order = Order.new(
       postalcode: params[:order][:postalcode],
       customer_id: current_customer.id,
