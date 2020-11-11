@@ -21,38 +21,59 @@
 
   </div>
   </div>
-  <!-- popular_puroducts　each do?? -->
+  
+  <!-- popular_puroducts -->
+  
   <div class="row">
   <div class="col-md-12">
 
   <div class="popular-products">
   <h2><div class="heading-text">おすすめ商品</div></h2>
 
-  <div class="popular-puroducts-container">
-    <div class="popular-puroducts-image"></div>
-    <div class="popular-puroducts-name">name</div>
-    <div class="popular-products-price">￥0</div>
+<div class="popular-puroducts-container">
+  <div class="popular-puroducts-item">
+    <div class="popular-puroducts-image">
+      <%= link_to product_path(@product_first.id) do %>
+       <%=  attachment_image_tag @product_first, :image, :fill, 220, 220, format:'jpeg', fallback:"no_image.jpg", size:"220x220" %>
+      <% end %>
+    </div>
+    <div class="popular-puroducts-name"><%= @product_first.name %></div>
+    <div class="popular-products-price"><%= @product_first.price %>円</div>
   </div>
 
-   <div class="popular-puroducts-container">
-    <div class="popular-puroducts-image"></div>
-    <div class="popular-puroducts-name">name</div>
-    <div class="popular-products-price">￥0</div>
+    <div class="popular-puroducts-item">
+    <div class="popular-puroducts-image">
+    <%= link_to product_path(@product_second.id) do %>  
+     <%= attachment_image_tag @product_second, :image, :fill, 220, 220, format:'jpeg', fallback:"no_image.jpg", size:"220x220" %>
+    <% end %>
+    </div>
+    <div class="popular-puroducts-name"><%= @product_second.name %></div>
+    <div class="popular-products-price"><%= @product_second.price %>円</div>
   </div>
 
-   <div class="popular-puroducts-container">
-    <div class="popular-puroducts-image"></div>
-    <div class="popular-puroducts-name">name</div>
-    <div class="popular-products-price">￥0</div>
+    <div class="popular-puroducts-item">
+    <div class="popular-puroducts-image">
+    <%= link_to product_path(@product_third.id) do %> 
+     <%= attachment_image_tag @product_third, :image, :fill, 220, 220, format:'jpeg', fallback:"no_image.jpg", size:"220x220" %>
+    <% end %>
+    </div>
+    <div class="popular-puroducts-name"><%= @product_third.name %></div>
+    <div class="popular-products-price"><%= @product_third.price %>円</div>
   </div>
-
-   <div class="popular-puroducts-container">
-    <div class="popular-puroducts-image"></div>
-    <div class="popular-puroducts-name">name</div>
-    <div class="popular-products-price">￥0</div>
+  
+   <div class="popular-puroducts-item">
+    <div class="popular-puroducts-image">
+    <%= link_to product_path(@product_fourth.id) do %>   
+     <%= attachment_image_tag @product_fourth, :image, :fill, 220, 220, format:'jpeg', fallback:"no_image.jpg", size:"220x220" %>
+    <% end %>
+    </div>
+    <div class="popular-puroducts-name"><%= @product_fourth.name %></div>
+    <div class="popular-products-price"><%= @product_fourth.price %>円</div>
   </div>
-
+  </div>
+  <br>
   <%= link_to "もっとみる>>", products_path %>
+  
   </div>
 
   </div>
