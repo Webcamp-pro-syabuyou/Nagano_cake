@@ -1,6 +1,6 @@
 class HomesController < ApplicationController 
   def top
-     @genres = Genre.where(is_active: true)
+    @genres = Genre.where(is_active: true)
      	# もしURLに[:genre_id]が含まれていたら
     	if params[:genre_id]
     		# その[:genre_id]のデータをGenreから@genreに入れて
@@ -15,6 +15,7 @@ class HomesController < ApplicationController
         @products = Product.where(is_active: true).page(params[:page])
         
         end
+  
   end
   
   def about
