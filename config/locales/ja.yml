@@ -8,10 +8,11 @@ ja:
         email: 'メールアドレス'
         family_name: '姓'
         first_name: '名'
-        family_name_kana: 'フリガナ(姓）'
+        family_name_kana: 'フリガナ(姓'
         first_name_kana: 'フリガナ(名)'
         address: '住所'
         tel: '電話番号'
+        password_confirmation: 'パスワードの再確認'
       address:
         postalcode: '郵便番号'
         address: '住所'

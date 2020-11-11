@@ -11,7 +11,7 @@ class CartProductsController < ApplicationController
       cart_product.save
       redirect_to cart_products_path
     elsif @cart_product.save
-      flash[:notice] = "商品を登録しました"
+      flash[:notice] = "商品をカートに入れました"
       redirect_to cart_products_path
     else
       render "products/show"
@@ -41,6 +41,11 @@ class CartProductsController < ApplicationController
       flash[:notice] = "商品数を変更しました"
       redirect_to cart_products_path
     else
+      array = []
+      current_customer.cart_products.all.each do |cart_product|
+        array << cart_product.product.price * cart_product.quantity
+      end
+      @total_price = (array.sum * 1.1).floor
       @cart_products = current_customer.cart_products
       render "cart_products/index"
     end
