@@ -23,6 +23,11 @@ class Admins::OrdersController < ApplicationController
     order = Order.find(params[:order][:id])
     order_status = params[:order][:order_status]
     if order.update(order_status: order_status)
+      if order.order_status == "入金確認"
+        order.order_products.update(product_status: 1)
+      elsif order.order_status == "入金待ち"
+        order.order_products.update(product_status: 0)
+      end
       flash[:notice] = "注文情報を更新しました"
       redirect_to request.referer
     end

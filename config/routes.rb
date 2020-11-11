@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root 'homes#top'
+  get 'searches/search' => 'searches#search'
   get 'homes/about' => 'homes#about'
   delete 'cart_products/destroy_all' => 'cart_products#destroy_all'
   get 'customers/resign' => 'customers#resign'
