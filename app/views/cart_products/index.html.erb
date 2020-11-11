@@ -69,8 +69,10 @@
   <% if current_customer.cart_products.any? %>
   
   <div class="col-xs-4 col-xs-offset-4">
-    <%= link_to new_order_path do %>
-      <button class="btn btn-success">情報入力に進む</button>
+    <% if current_customer.cart_products.any? %>
+      <%= link_to new_order_path do %>
+        <button class="btn btn-success">情報入力に進む</button>
+      <% end %>
     <% end %>
   <% end %>  
   </div>

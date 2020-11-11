@@ -10,7 +10,8 @@ class CustomersController < ApplicationController
 
   def update
     if current_customer.update(customer_params)
-      redirect_to customers_path(current_customer), notice: "入力内容を保存しました"
+      flash[:notice] = "お客様情報を更新しました"
+      redirect_to customers_path(current_customer)
     else
       render "edit"
     end
@@ -24,13 +25,14 @@ class CustomersController < ApplicationController
     current_customer.update(is_deleted: true)
     #ログアウトさせる
     reset_session
-    # flash[:notice] =""
+    flash[:notice] = "ご利用ありがとうございました"
     redirect_to root_path
   end
   
   
   private
   def customer_params
+
     params.require(:customer).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :postalcode, :address, :tel)
   end
 end
