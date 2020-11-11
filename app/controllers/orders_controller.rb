@@ -15,9 +15,9 @@ class OrdersController < ApplicationController
   end
 
   def new
-   @order = Order.new
-   @customer = current_customer
-   @addresses = current_customer.addresses
+     @order = Order.new
+     @customer = current_customer
+     @addresses = current_customer.addresses
   end
 
 
@@ -79,6 +79,7 @@ class OrdersController < ApplicationController
     @cart_product.save
     end
     current_customer.cart_products.destroy_all
+    flash[:notice] = "商品購入を完了しました"
     redirect_to orders_thanks_path
   end
 

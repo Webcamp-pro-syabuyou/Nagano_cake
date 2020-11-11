@@ -1,0 +1,27 @@
+ja:
+  activerecord:
+    attributes:
+      cart_product:
+        quantity: '数量'
+      customer:
+        postalcode: '郵便番号'
+        email: 'メールアドレス'
+        family_name: '姓'
+        first_name: '名'
+        family_name_kana: 'フリガナ(姓'
+        first_name_kana: 'フリガナ(名)'
+        address: '住所'
+        tel: '電話番号'
+        password_confirmation: 'パスワードの再確認'
+      address:
+        postalcode: '郵便番号'
+        address: '住所'
+        delivery_name: '宛名'
+      product:
+        genre: 'ジャンル'
+        name: '商品名'
+        price: '税抜価格'
+        introduction: '商品説明文'
+      genre:
+        name: 'ジャンル名'
+        is_active: '有効フラグ'

@@ -45,7 +45,7 @@
               <td><%= order_product.product.name %></td>
               <td><%= order_product.product.price %></td>
               <td><%= order_product.quantity %></td>
-              <td><%= order_product.quantity * order_product.product_price %></td>
+              <td><%= order_product.quantity * order_product.product.price %></td>
               <td>
                 <%= form_with model: order_product, url: admins_order_product_path(order_product), local: true do |f| %>
                   <%= f.hidden_field :id, :value => order_product.id %>
@@ -62,7 +62,7 @@
       <table class="table">
         <tr>
           <th>商品合計</th>
-          <td><%= @order.order_products.sum(:product_price) %></td>
+          <td><%= @order.total_price - @order.postage %></td>
         </tr>
         <tr>
           <th>送料</th>

@@ -1,5 +1,6 @@
 <h1>登録情報編集</h1>
 <%= form_with(model: current_customer, url:customers_path(current_customer),local:true) do |f|%>
+<%= render 'layouts/error_message', model: f.object %>
 <table class = "table">
     <tr>
       <th>名前</th>
