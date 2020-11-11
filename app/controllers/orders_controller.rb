@@ -62,7 +62,9 @@ class OrdersController < ApplicationController
      current_customer.cart_products.all.each do |cart_product|
       array << cart_product.product.price * cart_product.quantity
      end
-
+     
+   
+      
     @order = Order.new(
       postalcode: params[:order][:postalcode],
       customer_id: current_customer.id,
@@ -72,6 +74,7 @@ class OrdersController < ApplicationController
       order_status: params[:order][:order_status],
       postage: params[:order][:postage],
       total_price: params[:order][:total_price])
+
       @order.save
 
       if current_customer.address != @order.delivery_address && current_customer.addresses.where(address: @order.delivery_address).empty?
@@ -92,7 +95,6 @@ class OrdersController < ApplicationController
     @cart_product.save
     end
     current_customer.cart_products.destroy_all
-    flash[:notice] = "商品購入を完了しました"
     redirect_to orders_thanks_path
   end
 
