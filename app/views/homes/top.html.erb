@@ -2,21 +2,27 @@
 <div class="row">
 
   <!-- ジャンル検索　-->
-    <div class="col-md-3">
+  
+    <div class = "col-md-3">
 
-    <table class="table">
-      <thead>
-        <tr>
-        <th>ジャンル検索</th>
-        </tr>
+      <table class="table">
+        <thead>
+          <tr>
+            <th><div class="table-heading">ジャンル</div></th>
+          </tr>
+        </thead>
         <tbody>
-        <!-- each do 入れる　-->
-          <td>ケーキ
-            <!-- genre-name -->
-            </td>
+          <tr><% if params[:genre_id] %>
+            <%= @genre.name %>
+          </tr>
+          <tr>
+          <% else %>
+           
+          <% end %>
+          </tr>
+
         </tbody>
-      </thead>
-    </table>
+      </table>
 
     </div>
 
@@ -25,7 +31,7 @@
   <div class="col-md-9">
 
   <div class="top-message">
-  <p>ようこそ、NaganoCakeへ！<br />
+  <p>ようこそ、Nagano Cakeへ！<br />
   このサイトは、ケーキ販売のECサイトになります。<br />
   会員でない方も商品の閲覧はできますが、<br />
 購入には会員登録が必要になります。
@@ -39,23 +45,38 @@
   <div class="col-md-12">
 
   <div class="popular-products">
-  <h2>オススメ商品</h2>
+  <h2><div class="heading-text">おすすめ商品</div></h2>
   
   <div class="popular-puroducts-container">
-    <div class="popular-puroducts-image"image></div>
+    <div class="popular-puroducts-image"></div>
     <div class="popular-puroducts-name">name</div>
     <div class="popular-products-price">￥0</div>
   </div>
   
-
-
-  <!-- gem kaminari -->
-  <div class="more-show">もっと見る</div>
+   <div class="popular-puroducts-container">
+    <div class="popular-puroducts-image"></div>
+    <div class="popular-puroducts-name">name</div>
+    <div class="popular-products-price">￥0</div>
+  </div>
+  
+   <div class="popular-puroducts-container">
+    <div class="popular-puroducts-image"></div>
+    <div class="popular-puroducts-name">name</div>
+    <div class="popular-products-price">￥0</div>
+  </div>
+  
+   <div class="popular-puroducts-container">
+    <div class="popular-puroducts-image"></div>
+    <div class="popular-puroducts-name">name</div>
+    <div class="popular-products-price">￥0</div>
+  </div>
+  
+  <%= link_to "もっとみる>>", products_path %>
   </div>
 
   </div>
   </div>
-  <%=link_to'ログアウト',destroy_customer_session_path, method: :delete%>
 
+ 
 
 

@@ -4,24 +4,49 @@
 
 /* top */
 
+th {
+    background-color: #b8860b;
+}
+
+.heading-text {
+    color: #b8860b;
+}
+
+.top-container {
+    margin-top: 30px;
+}
+
 .table {
-  border: 2px solid black;
+  border: 2px solid #b8860b;
+  background-color: #ffffff;
+}
+
+.table-heading {
+    text-align: center;
+    color: #ffffff;
+    }
+
+.top-heading {
+  color: #b8860b;
 }
 
 .top-message {
   text-align: center;
-  border: 2px solid black;
+  font-size: 15px;
 }
 
 .popular-products {
    text-align: center;
-   border: 2px solid black;
+   margin: 30px 0;
+   border: 2px solid #b8860b;
+   background-color: #ffffff;
 }
 
 .popular-puroducts-container {
    display :flex;
    justify-content: center;
 }
+
 
 /* about */
 
@@ -35,12 +60,17 @@
   text-align: center;
   margin-top: 20px;
   margin-bottom: 40px;
+  font-size: 15px;
 }
 
 .shop-image {
-   width: 40%;
-   height: 150px;
-   border: 2px solid black;
-   display :flex;
-   justify-content: center;
+   width: 80%;
+   height: 250px;
+   margin: 0 auto;
+   background-image: url("/images/shop_image.jpg");
+   background-size: cover;
+   background-position: 30% 70%;
 }
+
+
+
