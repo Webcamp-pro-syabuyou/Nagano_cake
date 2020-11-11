@@ -7,7 +7,7 @@ class Admins::OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.all
+    @orders = Order.page(params[:page]).per(10).all.order(created_at: "DESC")
   end
 
   def show
@@ -23,7 +23,12 @@ class Admins::OrdersController < ApplicationController
     order = Order.find(params[:order][:id])
     order_status = params[:order][:order_status]
     if order.update(order_status: order_status)
-      flash[:notice] = "You have successfully updated order status"
+      if order.order_status == "入金確認"
+        order.order_products.update(product_status: 1)
+      elsif order.order_status == "入金待ち"
+        order.order_products.update(product_status: 0)
+      end
+      flash[:notice] = "注文情報を更新しました"
       redirect_to request.referer
     end
     # <%= f.select :order_status, [["入金待ち",0],["入金確認",1,],["製作中",2],["発送準備中",3],["発送済み",4]] %>

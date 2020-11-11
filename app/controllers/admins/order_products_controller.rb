@@ -1,14 +1,20 @@
 class Admins::OrderProductsController < ApplicationController
   before_action :authenticate_admin!
+
   def update
     order_product = OrderProduct.find(params[:order_product][:id])
     product_status = params[:order_product][:product_status]
-    # .to_iを入れなければ正常にupdateされてその後のセレクトボックスも現在のカラムが反映される
-    # f.select :product_status, OrderProduct.product_statuses.keys.to_a, {}のフォーム形式の場合文字列の"製作完了"etc.でparamsで受け取っている為、.to_iが不要
-    # string型のままupdateしてるけど、モデルファイルの記述のおかげで自動的に対応するintegerで保存される？
-    # モデルファイルの記述の整数のinteger型か、valueである文字列のstring型ならどっちでも保存できそう？
+    id = order_product.order_id
+    order = Order.find(id)
     if order_product.update(product_status: product_status)
-      flash[:notice] = "You have successfully updated product status"
+      if order.order_products.where(product_status: "制作完了").count == order.order_products.count
+        order.update(order_status: 3)
+      elsif order.order_products.where(product_status: "制作完了").any?
+        order.update(order_status: 2)
+      elsif order.order_products.where(product_status: "制作完了").count != order.order_products.count
+        order.update(order_status: 2)
+      end
+      flash[:notice] = "注文商品情報を更新しました"
       redirect_to request.referer
     end
   end

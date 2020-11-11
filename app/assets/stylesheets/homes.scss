@@ -9,6 +9,7 @@ th {
 }
 
 .heading-text {
+    margin-bottom: 25px;
     color: #b8860b;
 }
 
@@ -31,23 +32,31 @@ th {
 }
 
 .top-message {
+    margin-top: 40px;
   text-align: center;
   font-size: 15px;
+  line-height: 30px;
 }
 
 .popular-products {
+
    text-align: center;
    margin: 30px 0;
+   padding: 0 0 20px 0;
    border: 2px solid #b8860b;
    background-color: #ffffff;
 }
 
 .popular-puroducts-container {
-   display :flex;
-   justify-content: center;
+
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-
+.popular-puroducts-item {
+  margin: 0 10px;
+}
 /* about */
 
 .about-heading {

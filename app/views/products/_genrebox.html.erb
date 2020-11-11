@@ -1,14 +1,21 @@
-<div class="row">
-	<ul class="list-group">
-	  <li class="list-group-item list-group-item-warning text-center">ジャンル検索</li>
-	  <li class="list-group-item text-center">
-	  	<%= link_to "すべての商品", products_path %>
-	    <% genres.each do |genre| %>
-	  	    <div class="genru-text">
-				<%= link_to genre.name, products_path(genre_id: genre.id) %>
-		  	</div>
-		  	<% end %>
-	　　</li>
 
-	</ul>
-</div>
+		<table class="table">
+			<thead>
+				<tr>
+				<th>ジャンル検索</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><%= link_to "すべての商品", products_path %></td>
+				</tr>
+				<% genres.each do |genre| %>
+				<tr>
+					<td><%= link_to genre.name, products_path(genre_id: genre.id) %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+		
+		
+		

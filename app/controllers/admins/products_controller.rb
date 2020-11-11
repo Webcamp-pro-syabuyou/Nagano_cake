@@ -40,6 +40,7 @@ class Admins::ProductsController < ApplicationController
     # binding.pry
 
     if @product.update(product_params)
+      flash[:notice] = "商品情報を更新しました"
       redirect_to admins_product_path(params[:id])
     else
       render 'edit'
