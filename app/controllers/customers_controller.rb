@@ -3,9 +3,8 @@ class CustomersController < ApplicationController
   before_action :authenticate_customer!
 
   def show
-    @customer = current_customer
   end
-
+  
   def edit
   end
 
@@ -16,10 +15,10 @@ class CustomersController < ApplicationController
       render "edit"
     end
   end
-
+  
   def resign
   end
-
+  
   # 退会ボタンを押した時、退会フラグを有効(false)から退会(true)へ切り替えるアクション
   def resign_update
     current_customer.update(is_deleted: true)
@@ -28,11 +27,10 @@ class CustomersController < ApplicationController
     # flash[:notice] =""
     redirect_to root_path
   end
-
-
+  
+  
   private
   def customer_params
-    params.require(:customer).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :postalcode, :address, :email,:tel)
+    params.require(:customer).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :postalcode, :address, :tel)
   end
-
 end

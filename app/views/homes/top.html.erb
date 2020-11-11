@@ -2,31 +2,12 @@
 <div class="row">
 
   <!-- ジャンル検索　-->
-  
+
     <div class = "col-md-3">
-
-      <table class="table">
-        <thead>
-          <tr>
-            <th><div class="table-heading">ジャンル</div></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><% if params[:genre_id] %>
-            <%= @genre.name %>
-          </tr>
-          <tr>
-          <% else %>
-           
-          <% end %>
-          </tr>
-
-        </tbody>
-      </table>
-
+    <%= render 'products/genrebox', genres: @genres %>
     </div>
 
-  <!-- Wekcime-message -->
+  <!-- Welcome-message -->
 
   <div class="col-md-9">
 
@@ -46,37 +27,37 @@
 
   <div class="popular-products">
   <h2><div class="heading-text">おすすめ商品</div></h2>
-  
+
   <div class="popular-puroducts-container">
     <div class="popular-puroducts-image"></div>
     <div class="popular-puroducts-name">name</div>
     <div class="popular-products-price">￥0</div>
   </div>
-  
+
    <div class="popular-puroducts-container">
     <div class="popular-puroducts-image"></div>
     <div class="popular-puroducts-name">name</div>
     <div class="popular-products-price">￥0</div>
   </div>
-  
+
    <div class="popular-puroducts-container">
     <div class="popular-puroducts-image"></div>
     <div class="popular-puroducts-name">name</div>
     <div class="popular-products-price">￥0</div>
   </div>
-  
+
    <div class="popular-puroducts-container">
     <div class="popular-puroducts-image"></div>
     <div class="popular-puroducts-name">name</div>
     <div class="popular-products-price">￥0</div>
   </div>
-  
+
   <%= link_to "もっとみる>>", products_path %>
   </div>
 
   </div>
   </div>
 
- 
+
 
 

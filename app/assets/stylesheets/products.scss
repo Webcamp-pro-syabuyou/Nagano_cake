@@ -2,12 +2,25 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+/* product-index */
+
+.genre-box {
+	margin-top: 35px;
+}
+
+.genre-list {
+	margin-top: 15px;
+	display: flex;
+	justify-content: left;
+	flex-wrap: wrap;
+}
+
+.genre-list-item {
+	margin: 0 10px 10px 0;
+}
+
 .product-show{
 	margin-left: 100px;
 }
 
 
-
-.product-index{
-	margin-left: 10px;
-}
