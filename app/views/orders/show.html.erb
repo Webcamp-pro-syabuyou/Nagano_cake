@@ -1,6 +1,9 @@
 
  <!-- 注文情報入力 -->
 
+<div class="row">
+ <div class="col-md-9">
+
  <h2>注文情報入力</h2>
 
  <table class="table">
@@ -46,4 +49,33 @@
      </tr>
    </tbody>
  </table>
+
+  </div>
+ </div>
+
+ <!-- 購入商品情報 -->
+
+ <table class="table">
+  <thead>
+   <tr>
+    <th>商品</th>
+    <th>単価(税込)</th>
+    <th>個数</th>
+    <th>小計</th>
+   </tr>
+  </thead>
+
+  <tbody>
+   <% @order_products.each do |order_product| %>
+   <tr>
+    <td><%= order_product.product.name %></td>
+   <td><%= (order_product.product.price * 1.1).floor %></td>
+   <td><%= order_product.quantity %></td>
+   <td><%= (order_product.quantity * order_product.product.price * 1.1).floor %></td>
+   </tr>
+   <% end %>
+  </tbody>
+
+ </table>
+
 
