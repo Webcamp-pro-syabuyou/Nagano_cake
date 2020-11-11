@@ -43,9 +43,9 @@
           <% @order.order_products.each do |order_product| %>
             <tr>
               <td><%= order_product.product.name %></td>
-              <td><%= order_product.product.price %></td>
+              <td><%= (order_product.product.price * 1.1).floor %></td>
               <td><%= order_product.quantity %></td>
-              <td><%= order_product.quantity * order_product.product.price %></td>
+              <td><%= (order_product.quantity * order_product.product.price * 1.1).floor %></td>
               <td>
                 <%= form_with model: order_product, url: admins_order_product_path(order_product), local: true do |f| %>
                   <%= f.hidden_field :id, :value => order_product.id %>

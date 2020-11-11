@@ -15,9 +15,14 @@ class OrdersController < ApplicationController
   end
 
   def new
-   @order = Order.new
-   @customer = current_customer
-   @addresses = current_customer.addresses
+    if current_customer.cart_products.empty?
+      flash[:notice] = "カートに商品がありません"
+      redirect_to products_path
+    else
+       @order = Order.new
+       @customer = current_customer
+       @addresses = current_customer.addresses
+    end
   end
 
 
@@ -71,7 +76,14 @@ class OrdersController < ApplicationController
       total_price: params[:order][:total_price])
 
       @order.save
-      
+
+      if current_customer.address != @order.delivery_address && current_customer.addresses.where(address: @order.delivery_address).empty?
+        postalcode = @order.postalcode
+        address = @order.delivery_address
+        delivery_name = @order.delivery_name
+        Address.new(customer_id: current_customer.id,postalcode: postalcode, address: address, delivery_name: delivery_name).save
+      end
+
     # @customer = current_customer
       @carts = current_customer.cart_products
       @carts.each do |cart_product|
