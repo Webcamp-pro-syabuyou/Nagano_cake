@@ -1,21 +1,23 @@
 
-
 <div class="order-field">
+ 
+ 
  <%= form_with model: @order, url: confirm_orders_path, local: true do |f| %>
 
   <!-- 支払い方法選択フォーム -->
-
-  <h4><%= f.label :payment_method, "支払方法" %></h4>
+  
+<div class="payment-select">
+  <h3><%= f.label :payment_method, "支払方法" %></h3>
   <%= f.radio_button :payment_method, "クレジットカード", checked: "checked" %>
   <%= f.label :payment_method, "クレジットカード" %>
   <br>
   <%= f.radio_button :payment_method, "銀行振込" %>
   <%= f.label :payment_method, "銀行振込" %>
-
+</div>
 
   <!-- お届け先選択フォーム -->
-
-  <h4><%= f.label :delivery_address, "お届け先" %></h4>
+<div class="delivery-address-select">
+  <h3><%= f.label :delivery_address, "お届け先" %></h3>
 
   <!-- ご自身の住所　-->
 
@@ -32,7 +34,7 @@
   <%= f.radio_button :address_option, 1 %>
   <%= f.label :delivery_address, "登録済住所から選択" %>
   <br>
-  <%= f.collection_select :id, @addresses, :id, :order_addresses ,:include_blank => "選択してください" %>
+  <%= f.collection_select :id, @addresses, :id, :order_addresses ,:include_blank => "選択してください", class: "form-control" %>
   <br>
 
   <!-- 新しいお届け先　-->
@@ -41,19 +43,19 @@
   <%= f.label :delivery_address, "新しいお届け先" %>
   <br>
 
-  <table>
+  <table class="table">
    <tbody>
    <tr>
-    <td><%= f.label :delivery_address, "郵便番号" %></td>
-   <td><%= f.text_field :postalcode %></td>
+    <th><%= f.label :delivery_address, "郵便番号" %></th>
+   <td><%= f.text_field :postalcode, class: "form-control" %></td>
   </tr>
   <tr>
-   <td><%= f.label :delivery_address, "住所" %></td>
-   <td><%= f.text_field :delivery_address %></td>
+   <th><%= f.label :delivery_address, "住所" %></th>
+   <td><%= f.text_field :delivery_address, class: "form-control" %></td>
   </tr>
   <tr>
-   <td><%= f.label :delivery_address, "宛名" %></td>
-   <td><%= f.text_field :delivery_name %></td>
+   <th><%= f.label :delivery_address, "宛名" %></th>
+   <td><%= f.text_field :delivery_name, class: "form-control" %></td>
   </tr>
   </table>
 
@@ -61,4 +63,6 @@
   <%= f.submit "確認画面へ進む", class:"btn btn-primary" %>
   <% end %>
 
+ </div>
+ </div>
 </div>
