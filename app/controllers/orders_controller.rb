@@ -67,10 +67,10 @@ class OrdersController < ApplicationController
       order_status: params[:order][:order_status],
       postage: params[:order][:postage],
       total_price: params[:order][:total_price])
-      @order.save
+    @order.save
     # @customer = current_customer
-      @carts = current_customer.cart_products
-      @carts.each do |cart_product|
+    @carts = current_customer.cart_products
+    @carts.each do |cart_product|
       @cart_product = @order.order_products.new
       @cart_product.order_id = @order.id
       @cart_product.quantity = cart_product.quantity
@@ -84,8 +84,6 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @order_products = @order.order_products
-
 
 
     @cart_products = current_customer.cart_products
