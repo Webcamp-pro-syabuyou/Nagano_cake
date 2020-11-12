@@ -32,14 +32,5 @@ class Customer < ApplicationRecord
   validates :first_name_kana, presence: true, format: {
                   with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/
                 }
-
-
-  # validates :postalcode ,presence: :true, format: {
-  #               with: / \A[0-9０-９]+\z/
-  #               }
-  # validates :address ,presence: :true
-  # validates :tel ,presence: :true, format: {
-  #               with: /\A[0-9０-９]+\z/
-  #               }
   # -------------------------------------------------------------------
 end
