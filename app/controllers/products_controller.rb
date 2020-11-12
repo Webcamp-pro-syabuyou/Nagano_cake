@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
 
+
   def index
     @genres = Genre.where(is_active: true)
     if params[:genre_id]
