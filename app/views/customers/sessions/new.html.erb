@@ -1,31 +1,42 @@
 <%= flash[:error] %>
-<h2>会員の方はこちらからログイン</h2>
+<h1>会員の方はこちらからログイン</h1>
+<div class="row">
+ <div class="col-md-2"></div>
+ 
+ <div class="col-md-8">
 
 <%= form_for(resource, as: resource_name, url: customer_session_path) do |f| %>
 <%= render "admins/shared/error_messages", resource: resource %>
 
-    <div class="field">
-      <%= f.label :email ,"メールアドレス"%><br />
-      <%= f.email_field :email, autofocus: true %>
+<table class="table">
+  <tr>
+     <th><%= f.label :email ,"メールアドレス"%></th>
+      <td><%= f.email_field :email, autofocus: true, class: "form-control" %></td>
     </div>
-
-    <div class="field">
-      <%= f.label :password ,"パスワード"%><br />
-      <%= f.password_field :password %>
+    </tr>
+    <tr>
+      <th><%= f.label :password ,"パスワード"%></th>
+      <td><%= f.password_field :password, class: "form-control" %></td>
+    </tr>
+    </table>
+     <div class="actions">
+      <%= f.submit "ログイン",class: "btn btn-primary" %>
     </div>
-
-    <% if devise_mapping.rememberable? %>
+    <br>
+     <% if devise_mapping.rememberable? %>
       <div class="field">
-        <%=link_to "=>パスワードを忘れた方はこちら",new_customer_password_path%><br />
+        パスワードを忘れた方は <%=link_to "こちら",new_customer_password_path%> <br />
       </div>
     <% end %>
 
-    <div class="actions">
-      <%= f.submit "ログイン",class: "btn btn-primary" %>
-    </div>
+
 <% end %>
 
-<h2>登録がお済みでない方</h2>
-<%= link_to 'こちら', new_customer_registration_path%>から新規登録を行ってください
-
-
+<div>登録がお済みでない方は <%= link_to 'こちら', new_customer_registration_path %> から新規登録を行ってください<div>
+ 
+ </div>
+ 
+ <div class="col-md-2"></div>
+ 
+ </div>
+ 

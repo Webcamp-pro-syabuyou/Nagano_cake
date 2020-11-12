@@ -6,30 +6,22 @@
                 <div>
                     <div class="text-center">
                       <%= flash[:error] %>
-                        <h3 class="under-border">管理者ログイン</h3>
+                        <h1 class="under-border">管理者ログイン</h1>
                     </div>
                     <div>
 
-                      <div class="row">
-                          <div class="col-xs-offset-1 col-xs-10">
-                              <div class="text-center">
-                                  <h4>メールアドレスと<br>パスワードを入力してください。</h4>
-                              </div>
-                          </div>
-                      </div>
-
-
-
                         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-                        <div class="form-group">
-                        <%= f.email_field :email, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"メールアドレス"%>
-                        </div>
-                        <div class="form-group">
-                        <%= f.password_field :password, autocomplete: "off", class:"form-control", id:"inputPassword", placeholder:"パスワード" %>
-                        </div>
-
-
-                        <div class="text-center">
+                        <table = class="table">
+                          <tr>
+                            <th>メールアドレス</th>
+                        　　<td><%= f.email_field :email, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"メールアドレス"%></td>　
+                          </tr>
+                          <tr>
+                           <th>パスワード</th>
+                           <td><%= f.password_field :password, autocomplete: "off", class:"form-control", id:"inputPassword", placeholder:"パスワード" %></td>
+                          </tr>
+                        </table>  
+                        
                           <%= f.submit "サインイン", class: "btn btn-success"  %>
                         </div>
 
