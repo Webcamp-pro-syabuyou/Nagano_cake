@@ -32,11 +32,6 @@ class CustomersController < ApplicationController
 
   private
   def customer_params
-<<<<<<< HEAD
     params.require(:customer).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :postalcode, :address, :email,:tel)
-=======
-
-    params.require(:customer).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :email, :postalcode, :address, :tel)
->>>>>>> origin/develop
   end
 end
