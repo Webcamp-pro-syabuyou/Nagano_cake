@@ -1,31 +1,79 @@
-
 <div class="row">
-
-  <!-- ジャンル検索　-->
-
-    <div class = "col-md-3">
+  <div class = "col-md-3">
     <%= render 'products/genrebox', genres: @genres %>
-    </div>
-
-  <!-- Welcome-message -->
-
+  </div>
   <div class="col-md-9">
-
-  <div class="top-message">
-  <p>ようこそ、Nagano Cakeへ！<br />
-  このサイトは、ケーキ販売のECサイトになります。<br />
-  会員でない方も商品の閲覧はできますが、<br />
-購入には会員登録が必要になります。
-  </p>
+    <div class="top-message">
+      <p>ようこそ、Nagano Cakeへ！<br />
+        このサイトは、ケーキ販売のECサイトになります。<br />
+        会員でない方も商品の閲覧はできますが、<br />
+        購入には会員登録が必要になります。
+      </p>
+    </div>
   </div>
-
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="popular-products">
+      <div class="heading-text">
+        <h2>おすすめ商品</h2>
+      </div>
+      <div class="popular-puroducts-container">
+        <div class="popular-puroducts-item">
+          <div class="popular-puroducts-image">
+            <%= link_to product_path(@product_first.id) do %>
+              <%=  attachment_image_tag @product_first, :image, :fill, 220, 220, format:'jpeg', fallback:"no_image.jpg", size:"220x220" %>
+            <% end %>
+          </div>
+          <div class="popular-puroducts-name">
+            <%= @product_first.name %>
+          </div>
+          <div class="popular-products-price">
+            <%= (@product_first.price * 1.1).floor %>円
+          </div>
+        </div>
+        <div class="popular-puroducts-item">
+          <div class="popular-puroducts-image">
+            <%= link_to product_path(@product_second.id) do %>
+              <%= attachment_image_tag @product_second, :image, :fill, 220, 220, format:'jpeg', fallback:"no_image.jpg", size:"220x220" %>
+            <% end %>
+          </div>
+          <div class="popular-puroducts-name">
+            <%= @product_second.name %>
+          </div>
+          <div class="popular-products-price">
+            <%= (@product_second.price * 1.1).floor %>円
+          </div>
+        </div>
+        <div class="popular-puroducts-item">
+          <div class="popular-puroducts-image">
+            <%= link_to product_path(@product_third.id) do %>
+              <%= attachment_image_tag @product_third, :image, :fill, 220, 220, format:'jpeg', fallback:"no_image.jpg", size:"220x220" %>
+            <% end %>
+          </div>
+          <div class="popular-puroducts-name">
+            <%= @product_third.name %>
+          </div>
+          <div class="popular-products-price">
+            <%= (@product_third.price * 1.1).floor %>円
+          </div>
+        </div>
+        <div class="popular-puroducts-item">
+          <div class="popular-puroducts-image">
+            <%= link_to product_path(@product_fourth.id) do %>
+              <%= attachment_image_tag @product_fourth, :image, :fill, 220, 220, format:'jpeg', fallback:"no_image.jpg", size:"220x220" %>
+            <% end %>
+          </div>
+          <div class="popular-puroducts-name">
+            <%= @product_fourth.name %>
+          </div>
+          <div class="popular-products-price">
+            <%= (@product_fourth.price * 1.1).floor %>円
+          </div>
+        </div>
+      </div>
+      <br>
+      <%= link_to "もっとみる>>", products_path %>
+    </div>
   </div>
-  </div>
-  
-  <!-- popular_puroducts -->
-  
-
-
-
-
-
+</div>

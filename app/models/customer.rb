@@ -6,21 +6,15 @@ class Customer < ApplicationRecord
 
   has_many :cart_products, dependent: :destroy
   has_many :in_cart_products, through: :cart_products, source: :product
-
   has_many :orders, dependent: :destroy
   has_many :order_products, through: :orders
   has_many :purchased_products, through: :order_products, source: :product
-
   has_many :addresses, dependent: :destroy
 
-  # ログインする時に退会済み(is_deleted==true)のユーザーを弾くアクション
   def active_for_authentication?
     super && (self.is_deleted == false)
   end
 
-
-
-  # バリデーション---------------------------------------------------
   validates :family_name, presence: true
   validates :first_name, presence: true
   validates :address, presence: true
@@ -32,5 +26,4 @@ class Customer < ApplicationRecord
   validates :first_name_kana, presence: true, format: {
                   with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/
                 }
-  # -------------------------------------------------------------------
 end

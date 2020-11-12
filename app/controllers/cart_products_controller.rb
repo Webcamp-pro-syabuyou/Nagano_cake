@@ -1,7 +1,6 @@
 class CartProductsController < ApplicationController
   before_action :authenticate_customer!
 
-
   def create
     @cart_product = CartProduct.new(cart_product_params)
     @cart_product.customer_id = current_customer.id
@@ -9,25 +8,18 @@ class CartProductsController < ApplicationController
       cart_product = current_customer.cart_products.find_by(product_id: params[:cart_product][:product_id])
       cart_product.quantity += params[:cart_product][:quantity].to_i
       cart_product.save
+      flash[:notice] = "商品をカートに入れました"
       redirect_to cart_products_path
     elsif @cart_product.save
       flash[:notice] = "商品をカートに入れました"
       redirect_to cart_products_path
-    else
-      render "products/show"
-      # products/show内の変数しないとエラーでる
     end
   end
 
   def index
     @cart_products = current_customer.cart_products
     @cart_product = CartProduct.new
-
-    array = []
-    current_customer.cart_products.all.each do |cart_product|
-      array << cart_product.product.price * cart_product.quantity
-    end
-    @total_price = (array.sum * 1.1).floor
+    @total_price = current_customer.cart_products.cart_products_total_price(@cart_products)
   end
 
   def update
@@ -41,12 +33,8 @@ class CartProductsController < ApplicationController
       flash[:notice] = "商品数を変更しました"
       redirect_to cart_products_path
     else
-      array = []
-      current_customer.cart_products.all.each do |cart_product|
-        array << cart_product.product.price * cart_product.quantity
-      end
-      @total_price = (array.sum * 1.1).floor
       @cart_products = current_customer.cart_products
+      @total_price = current_customer.cart_products.cart_products_total_price(@cart_products)
       render "cart_products/index"
     end
   end

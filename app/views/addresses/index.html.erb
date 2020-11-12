@@ -1,9 +1,6 @@
 <h1>配送先登録 / 一覧</h1>
-
- <!--配送先登録-->
- 
   <%= form_with model:@address, url:customers_addresses_path, local:true do |f|%>
-  <%= render 'layouts/error_message', model: f.object %>
+    <%= render 'layouts/error_message', model: f.object %>
     <div class  = "row">
       <div class='col-md-12'>
         <table class="table" >
@@ -22,15 +19,13 @@
         </table>
       </div>
        　 <%= f.submit"登録する",class: "btn btn-success"%>
-      </div>
-    <% end %>
+    </div>
+  <% end %>
 <br>
-
-    <!--配送先一覧-->
-    <div class="row">
-    <div class='col-md-12'>
-      <% if @addresses.present? %>
-        <table class="table">
+<div class="row">
+  <div class='col-md-12'>
+    <% if @addresses.present? %>
+      <table class="table">
         <thead>
           <tr>
             <th>郵便番号</th>
@@ -46,7 +41,7 @@
               <td><%= address.address%></td>
               <td><%= address.delivery_name %></td>
               <td>
-                <%= link_to"編集する",edit_customers_address_path(address),class:"btn btn-primary"%>　
+                <%= link_to"編集する",edit_customers_address_path(address),class:"btn btn-primary"%>
                 <%= link_to"削除する",customers_address_path(address), method: :delete, "data-confirm" => "本当に削除しますか？",class:"btn btn-danger"%>
                 <!--まとめて右寄せするには？-->
               </td>
@@ -54,10 +49,10 @@
           <% end %>
         </tbody>
       </table>
-      <% else %>
-        <p>登録済の送付先はありません</p>
-      <% end %>
-    </div>
+    <% else %>
+      <p>登録済の送付先はありません</p>
+    <% end %>
   </div>
+</div>
 
 
