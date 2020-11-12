@@ -45,6 +45,8 @@ th {
    padding: 0 0 20px 0;
    border: 2px solid #b8860b;
    background-color: #ffffff;
+   box-shadow: 3px 3px 5px #000;
+   
 }
 
 .popular-puroducts-container {
@@ -72,13 +74,14 @@ th {
   font-size: 15px;
 }
 
-.shop-image {
-   width: 80%;
-   height: 250px;
+.about-shop-image {
+   width: 500px;
+   height: 300px;
    margin: 0 auto;
-   background-image: url("/images/shop_image.jpg");
+   background-image: url("/images/logo.png");
    background-size: cover;
-   background-position: 30% 70%;
+   background-position: 55% 45%;
+   border: #191970;
 }
 
 
