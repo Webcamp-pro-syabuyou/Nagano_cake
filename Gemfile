@@ -73,3 +73,4 @@ gem 'kaminari','~> 1.2.1'
 gem 'paranoia'
 gem 'pry-byebug'
 gem 'rails-i18n'
+

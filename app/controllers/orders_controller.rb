@@ -7,14 +7,9 @@ class OrdersController < ApplicationController
   end
 
   def new
-    if current_customer.cart_products.empty?
-      flash[:notice] = "カートに商品がありません"
-      redirect_to products_path
-    else
-       @order = Order.new
-       @customer = current_customer
-       @addresses = current_customer.addresses
-    end
+   @order = Order.new
+   @customer = current_customer
+   @addresses = current_customer.addresses
   end
 
   def confirm
@@ -70,6 +65,7 @@ class OrdersController < ApplicationController
 
     @carts = current_customer.cart_products
     @carts.each do |cart_product|
+
       @cart_product = @order.order_products.new
       @cart_product.order_id = @order.id
       @cart_product.quantity = cart_product.quantity
