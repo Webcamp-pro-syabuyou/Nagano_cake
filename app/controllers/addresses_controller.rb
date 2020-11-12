@@ -3,19 +3,16 @@ class AddressesController < ApplicationController
   before_action :authenticate_customer!
   before_action :ensure_correct_customer ,only:[:edit, :update, :destroy ]
 
-
   def index
     @address = Address.new
     @addresses = Address.where(customer_id: current_customer)
   end
 
-
   def create
     @address = Address.new(address_params)
     @address.customer_id = current_customer.id
-    # アドレス変数にユーザIDを紐づける
     if @address.save
-    redirect_to customers_addresses_path, notice: "配送先を登録しました"
+      redirect_to customers_addresses_path, notice: "配送先を登録しました"
     else
       @addresses = Address.where(customer_id: current_customer)
       render 'index'
@@ -36,7 +33,6 @@ class AddressesController < ApplicationController
     end
   end
 
-
   def destroy
     @address = Address.find(params[:id])
     @address.customer_id = current_customer.id
@@ -49,7 +45,6 @@ class AddressesController < ApplicationController
     params.require(:address).permit(:postalcode, :address, :delivery_name)
   end
 
-  # 他のユーザがurl入力で遷移してくるのを防ぐ
   def ensure_correct_customer
     @address = Address.find(params[:id])
     if @address.customer != current_customer

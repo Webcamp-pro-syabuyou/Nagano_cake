@@ -1,103 +1,74 @@
-
 <div clss="row">
-<%= form_with model: @order, url: orders_path, local: true do |f| %>
-
-<!-- 購入商品-->
-
-<div class="col-md-9">
-
-<table class="table">
- <thead>
-  <tr>
-   <th>商品名</th>
-   <th>単価(税込）</th>
-   <th>数量</th>
-   <th>小計</th>
-  </tr>
- </thead>
-
- <% @cart_products.each do |cart_product| %>
-
- <tbody>
-  <tr>
-   <td>
-       <%= attachment_image_tag cart_product.product, :image, :fill, 200, 200, format:'jpeg', fallback:"no_image.jpg", size:"50x50" %>
-       <%= cart_product.product.name %>
-   </td>
-   <td>
-       <%= (cart_product.product.price * 1.1).floor %>
-   </td>
-   <td>
-       <%= cart_product.quantity %>
-   </td>
-   <td><%= (cart_product.quantity * cart_product.product.price * 1.1).floor %></td>
-  </tr>
- </tbody>
-
- <% end %>
-</table>
-
-</div>
-
-<!-- 金額 -->
-
-<div class="col-md-3">
-
-<table class="table">
-  <tr>
-   <th>送料</th>
-   <td>800</td>
-  </tr>
-  <tr>
-   <th>商品合計</th>
-   <td><%= @cart_price %></td>
-  </tr>
-  <tr>
-   <th>請求金額</th>
-   <td><%= @total_price %></td>
-  </tr>
-
-</table>
-
-</div>
-</div>
-
-<!-- 支払い方法 -->
-
-<div class="row">
- <div class="col-md-12">
-
-<div class="cofind-pay-method">
-<h3>支払方法</h3>
-<p>
-<%= @order.payment_method %>
-
-</p>
-</div>
-
-<!-- 配送先 -->
-
-<div class="confind-delivery_address">
- <h3>お届け先</h3>
- <p><%= @order.postalcode %></p>
- <p><%= @order.delivery_address %></p>
- <p><%= @order.delivery_name %></p>
-
-</div>
-
-
-<!-- hidden_field  -->
-
-<%= f.hidden_field :payment_method, :value => @order.payment_method %>
-<%= f.hidden_field :postalcode, :value => @order.postalcode %>
-<%= f.hidden_field :delivery_address, :value => @order.delivery_address %>
-<%= f.hidden_field :delivery_name, :value => @order.delivery_name %>
-<%= f.hidden_field :postage, :value => @order.postage %>
-<%= f.hidden_field :total_price, :value => @total_price %>
-<%= f.hidden_field :order_status, :value => @order.order_status %>
-<%= f.hidden_field :postage, :value => 800 %>
-<%= f.submit '購入を確定する', class:"btn btn-success" %>
-<% end %>
-
- </div>
+  <%= form_with model: @order, url: orders_path, local: true do |f| %>
+    <div class="col-md-9">
+      <table class="table">
+        <thead>
+         <tr>
+          <th>商品名</th>
+          <th>単価(税込）</th>
+          <th>数量</th>
+          <th>小計</th>
+         </tr>
+        </thead>
+        <% @cart_products.each do |cart_product| %>
+          <tbody>
+            <tr>
+             <td>
+                 <%= attachment_image_tag cart_product.product, :image, :fill, 200, 200, format:'jpeg', fallback:"no_image.jpg", size:"50x50" %>
+                 <%= cart_product.product.name %>
+             </td>
+             <td>
+                 <%= (cart_product.product.price * 1.1).floor %>
+             </td>
+             <td>
+                 <%= cart_product.quantity %>
+             </td>
+             <td><%= (cart_product.quantity * cart_product.product.price * 1.1).floor %></td>
+            </tr>
+          </tbody>
+        <% end %>
+      </table>
+    </div>
+    <div class="col-md-3">
+      <table class="table">
+        <tr>
+         <th>送料</th>
+         <td>800</td>
+        </tr>
+        <tr>
+         <th>商品合計</th>
+         <td><%= @cart_price %></td>
+        </tr>
+        <tr>
+         <th>請求金額</th>
+         <td><%= @total_price %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="cofind-pay-method">
+        <h3>支払方法</h3>
+        <p>
+          <%= @order.payment_method %>
+        </p>
+    </div>
+    <div class="confind-delivery_address">
+      <h3>お届け先</h3>
+      <p><%= @order.postalcode %></p>
+      <p><%= @order.delivery_address %></p>
+      <p><%= @order.delivery_name %></p>
+    </div>
+    <%= f.hidden_field :payment_method, :value => @order.payment_method %>
+    <%= f.hidden_field :postalcode, :value => @order.postalcode %>
+    <%= f.hidden_field :delivery_address, :value => @order.delivery_address %>
+    <%= f.hidden_field :delivery_name, :value => @order.delivery_name %>
+    <%= f.hidden_field :postage, :value => @order.postage %>
+    <%= f.hidden_field :total_price, :value => @total_price %>
+    <%= f.hidden_field :order_status, :value => @order.order_status %>
+    <%= f.hidden_field :postage, :value => 800 %>
+    <%= f.submit '購入を確定する', class:"btn btn-success" %>
+  <% end %>
+  </div>
 </div>

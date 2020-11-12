@@ -1,5 +1,4 @@
-<h1>"<%= @customer.family_name %> <%= @customer.first_name %>さん" の会員詳細</h1>
-
+<h1><%= @customer.family_name %> <%= @customer.first_name %>さんの会員詳細</h1>
 <table class="table">
   <tr>
     <th>顧客ID</th>
@@ -37,11 +36,9 @@
     <td><%= @customer.email %></td>
   </tr>
 </table>
-
 <%= link_to edit_admins_customer_path(@customer) do %>
   <button class="btn btn-primary">編集する</button>
 <% end %>
-
 <%= link_to admins_orders_path do %>
   <button class="btn btn-primary">注文一覧を見る</button>
 <% end %>
