@@ -1,60 +1,56 @@
+<h1>商品 新規登録画面</h1>
+
 <div class="row">
-    <%= form_with model: @product, url: admins_products_path, local: true do |f| %>
-      <h3 class="under-border">商品 新規登録画面</h3>
-      <%= render 'layouts/error_message', model: @product %>
-      <div class="col-xs-4">
-        <%= attachment_image_tag @product, :image, :limit, 300, 300, fallback: "no_image.jpg",size: "300x300",id:"prev_img" %>
-        <div class="col-xs-7 col-xs-offset-1">
-          <label for="post_img" class= "btn btn-primary btn-block label-img">
-            <%= f.attachment_field :image,id: :post_img, class: "hidden" %>
-            画像選択
-          </label>
-        </div>
-      </div>
-      <div class="col-xs-8">
-        <div class="form-group row">
-          <div class="col-xs-2">
-            <%= f.label :name, "商品名" %>
+  <div class="col-md-4">
+    <table class="table">
+      <tr>
+       <td><%= form_with model: @product, url: admins_products_path, local: true do |f| %>
+         <%= render 'layouts/error_message', model: @product %>
+          <div class="product-new-image">
+            <%= attachment_image_tag @product, :image, :limit, 300, 300, fallback: "no_image.jpg",size: "300x300",id:"prev_img" %>
           </div>
-          <div class="col-xs-6">
-            <%= f.text_field :name, class: "form-control" %>
-          </div>
-        </div>
-        <div class="form-group row">
-          <div class="col-xs-2">
-            <%= f.label :introduction, "商品説明" %>
-          </div>
-          <div class="col-xs-6">
-            <%= f.text_area :introduction, class: "form-control" %>
-          </div>
-        </div>
-        <div class="form-group row">
-          <div class="col-xs-2">
-            <%= f.label :genre_id, "ジャンル"%>
-          </div>
-          <div class="col-xs-6">
-            <%= f.collection_select :genre_id, Genre.all, :id,:name,{prompt: "--選択してください--"},class: "form-control" %>
-          </div>
-        </div>
-        <div class="form-group row">
-          <div class="col-xs-2">
-            <%= f.label :price, "税抜価格" %>
-          </div>
-          <div class="col-xs-6">
-            <%= f.number_field :price, class: "form-control" %>
-          </div>
-        </div>
-        <div class="form-group row">
-          <div class="col-xs-2">
-            <%= f.label :is_active ,"販売ステータス" %>
-          </div>
-          <div class="col-xs-6">
-            <%= f.select :is_active, [['販売中', true],['販売停止中', false]] ,{prompt: "--選択してください--"},class: "form-control" %>
-          </div>
-        </div>
-      </div>
+      </td>
+      </tr>
+      <tr>
+       <td>
+         <label for="post_img" class= "btn btn-primary label-img">
+         <%= f.attachment_field :image,id: :post_img, class: "hidden" %> 画像選択
+         </label>
+       </td>   
+      </tr>
+     </table>
+   </div>  
+     
+    
+   <div class="col-md-8">
+     
+            <table class="table">
+                <tr>
+                   <th><%= f.label :name, "商品名" %></th>
+                   <td><%= f.text_field :name, class: "form-control" %></td> 
+                </tr>
+                <tr>
+                  <th><%= f.label :introduction, "商品説明" %></th>
+                  <td><%= f.text_area :introduction, class: "form-control" %></td>
+                </tr> 
+                <tr>
+                  <th><%= f.label :genre_id, "ジャンル"%>
+                  <td><%= f.collection_select :genre_id, Genre.all, :id,:name,{prompt: "--選択してください--"},class: "form-control" %></td>
+                </tr>  
+                <tr>
+                  <th><%= f.label :price, "税抜価格" %></th>
+                  <td><%= f.number_field :price, class: "form-control" %></td>
+                </tr>
+                <tr>
+                 <th><%= f.label :is_active ,"販売ステータス" %></th>
+                 <td> <%= f.select :is_active, [['販売中', true],['販売停止中', false]] ,{prompt: "--選択してください--"},class: "form-control" %></td>
+              </table>
+   
+      
       <div class="text-right">
         <%= f.submit "新規登録", class: "btn btn-primary" %>
       </div>
     <% end %>
+      </div>
+  </div> 
 </div>
