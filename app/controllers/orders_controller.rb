@@ -69,12 +69,17 @@ class OrdersController < ApplicationController
       order_status: params[:order][:order_status],
       postage: params[:order][:postage],
       total_price: params[:order][:total_price])
+    @order.save
 
-      @order.save
-      
+      if current_customer.address != @order.delivery_address && current_customer.addresses.where(address: @order.delivery_address).empty?
+        postalcode = @order.postalcode
+        address = @order.delivery_address
+        delivery_name = @order.delivery_name
+        Address.new(customer_id: current_customer.id,postalcode: postalcode, address: address, delivery_name: delivery_name).save
+      end
     # @customer = current_customer
-      @carts = current_customer.cart_products
-      @carts.each do |cart_product|
+    @carts = current_customer.cart_products
+    @carts.each do |cart_product|
       @cart_product = @order.order_products.new
       @cart_product.order_id = @order.id
       @cart_product.quantity = cart_product.quantity
@@ -88,8 +93,6 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @order_products = @order.order_products
-
 
 
     @cart_products = current_customer.cart_products
