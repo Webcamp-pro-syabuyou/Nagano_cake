@@ -18,9 +18,6 @@ class ProductsController < ApplicationController
 
         end
       # 8件でページをわける
-
-
-
  end
 
 
