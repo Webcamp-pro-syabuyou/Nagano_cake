@@ -69,12 +69,7 @@ class OrdersController < ApplicationController
       order_status: params[:order][:order_status],
       postage: params[:order][:postage],
       total_price: params[:order][:total_price])
-<<<<<<< HEAD
     @order.save
-=======
-
-      @order.save
-<<<<<<< HEAD
 
       if current_customer.address != @order.delivery_address && current_customer.addresses.where(address: @order.delivery_address).empty?
         postalcode = @order.postalcode
@@ -82,11 +77,6 @@ class OrdersController < ApplicationController
         delivery_name = @order.delivery_name
         Address.new(customer_id: current_customer.id,postalcode: postalcode, address: address, delivery_name: delivery_name).save
       end
-
->>>>>>> origin/develop
-=======
-      
->>>>>>> origin/develop
     # @customer = current_customer
     @carts = current_customer.cart_products
     @carts.each do |cart_product|
