@@ -26,4 +26,6 @@ class Customer < ApplicationRecord
   validates :first_name_kana, presence: true, format: {
                   with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/
                 }
+
+
 end
