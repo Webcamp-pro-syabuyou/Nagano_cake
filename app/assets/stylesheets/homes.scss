@@ -46,7 +46,7 @@ th {
    border: 2px solid #b8860b;
    background-color: #ffffff;
    box-shadow: 3px 3px 5px #000;
-   
+
 }
 
 .popular-puroducts-container {
@@ -57,7 +57,11 @@ th {
 }
 
 .popular-puroducts-item {
-  margin: 0 10px;
+  margin: 0 20px;
+  	border: 2px solid #b8860b;
+	text-align: center;
+	background-color: #b8860b;
+	color: #ffffff;
 }
 /* about */
 
