@@ -1,61 +1,57 @@
-<div class="row">
   <%= form_with url: admins_product_path(@product) ,model: @product,local: true do |f| %>
-    <h3 class="under-border">商品 編集画面</h3>
-    <%= render 'layouts/error_message', model: @product %>
-    <div class="col-xs-4">
-      <%= attachment_image_tag @product, :image, :limit, 300, 300, fallback: "no_image.jpg",size: "300x300",id:"prev_img" %>
-      <div class="col-xs-7 col-xs-offset-1">
-        <label for="post_img" class= "btn btn-primary btn-block label-img">
-          <%= f.attachment_field :image,id: :post_img, class: "hidden" %>
-          画像選択
-        </label>
-      </div>
-    </div>
-    <div class="col-xs-8">
-      <div class="form-group row">
-        <div class="col-xs-2">
-          <%= f.label :name, "商品名" %>
-        </div>
-        <div class="col-xs-6">
-          <%= f.text_field :name , value: @product.name,class: "form-control" %>
-        </div>
-      </div>
-      <div class="form-group row">
-        <div class="col-xs-2">
-          <%= f.label :introduction, "商品説明" %>
-        </div>
-        <div class="col-xs-6">
-          <%= f.text_area :introduction , value: @product.introduction,class: "form-control" %>
+    <h1 class="under-border">商品 編集画面</h1>
+    
+    <div class="row">
+      
+      <%= render 'layouts/error_message', model: @product %>
+      
+      <div class="col-md-4">
+        <div class="product-imag">
+          <table class="table">
+            <tr>
+              <th><div class="text-center"><%= attachment_image_tag @product, :image, :limit, 300, 300, fallback: "no_image.jpg",size: "320x300",id:"prev_img" %></div></th>
+            </tr>
+         </table>
+           <div class="col-md-7 col-xs-offset-1">
+            <label for="post_img" class= "btn btn-primary btn-block label-img">
+            <%= f.attachment_field :image,id: :post_img, class: "hidden" %>
+            画像選択
+            </label>
+           </div>
         </div>
       </div>
-      <div class="form-group row">
-        <div class="col-xs-2">
-          <%= f.label :genre_id, "ジャンル" %>
-        </div>
-        <div class="col-xs-6">
-          <%= f.collection_select :genre_id, Genre.all, :id, :name,{prompt: @product.genre_id}, class: "form-control"  %>
-        </div>
-      </div>
-      <div class="form-group row">
-        <div class="col-xs-2">
-          <%= f.label :price, "税抜価格" %>
-        </div>
-        <div class="col-xs-6">
-          <%= f.number_field :price, value: @product.price,class: "form-control" %>
-        </div>
-      </div>
-      <div class="form-group row">
-        <div class="col-xs-2">
-          <%= f.label :is_active, "販売ステータス" %>
-        </div>
-        <div class="col-xs-6">
-          <%= f.select :is_active, [['販売中',true],['販売停止中', false]], {prompt: "--選択してください--"},class: "form-control" %>
-        </div>
-      </div>
-    </div>
-    <div class="text-right">
-      <%= f.submit "変更を保存" ,class: "btn btn-primary" %>
-    </div>
-  <% end %>
-</div>
+      
+      <div class="col-md-8">
+        <table class="table">
+          <tr>
+            <th><%= f.label :name, "商品名" %></th>
+            <td><%= f.text_field :name , value: @product.name,class: "form-control" %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :introduction, "商品説明" %></th>
+            <td><%= f.text_area :introduction , value: @product.introduction,class: "form-control" %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :genre_id, "ジャンル" %></th>
+            <td> <%= f.collection_select :genre_id, Genre.all, :id, :name,{prompt: @product.genre_id}, class: "form-control"  %>
+          </tr>
+          <tr>
+            <th><%= f.label :price, "税抜価格" %></th>
+            <td><%= f.number_field :price, value: @product.price,class: "form-control" %></td> 
+          </tr>
+          <tr>
+            <th><%= f.label :is_active, "販売ステータス" %></th>
+            <td><%= f.select :is_active, [['販売中',true],['販売停止中', false]], {prompt: "--選択してください--"},class: "form-control" %></td>
+          </tr>
+       </table>
+       
+       <div class="row">
+         <div class="col-md-12">
+           <div class="text-right">
+            <%= f.submit "変更を保存" ,class: "btn btn-primary" %>
+           </div>
+         </div>
+       </div>
+<% end %>
+
 
