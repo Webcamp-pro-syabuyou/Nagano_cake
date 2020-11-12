@@ -3,19 +3,16 @@ class AddressesController < ApplicationController
   before_action :authenticate_customer!
   before_action :ensure_correct_customer ,only:[:edit, :update, :destroy ]
 
-
   def index
     @address = Address.new
     @addresses = Address.where(customer_id: current_customer)
   end
 
-
   def create
     @address = Address.new(address_params)
     @address.customer_id = current_customer.id
-    # アドレス変数にユーザIDを紐づける
     if @address.save
-    redirect_to customers_addresses_path, notice: "配送先を登録しました"
+      redirect_to customers_addresses_path, notice: "配送先を登録しました"
     else
       @addresses = Address.where(customer_id: current_customer)
       render 'index'
@@ -35,7 +32,6 @@ class AddressesController < ApplicationController
       render 'edit'
     end
   end
-
 
   def destroy
     @address = Address.find(params[:id])

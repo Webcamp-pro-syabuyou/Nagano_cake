@@ -1,28 +1,23 @@
 <h1>配送先編集</h1>
-<div class="container">
-<div class = "row">
-<%= form_with model:@address, url:customers_address_path,local:true do |f| %>
-<%= render 'layouts/error_message', model: f.object %>
-  <div class = "col-xs-12">
-    <table class= "table">
-      <tr>
-        <th>郵便番号（ハイフンなし）</th>
-        <td><%= f.text_field :postalcode, autofocus: true, class: "form-control" %></td>
-      </tr>
-      <tr>
-        <th>住所</th>
-        <td><%= f.text_field :address, autofocus: true, size: 50, class: "form-control" %></td>
-      </tr>
-      <tr>
-        <th>宛名</th>
-        <td><%= f.text_field :delivery_name, autofocus: true , class: "form-control" %></td>
-      </tr>
-    </table>
+  <div class = "row">
+    <%= form_with model:@address, url:customers_address_path,local:true do |f| %>
+      <%= render 'layouts/error_message', model: f.object %>
+      <div class = "col-xs-12">
+        <table class= "table">
+          <tr>
+            <th>郵便番号（ハイフンなし）</th>
+            <td><%= f.text_field :postalcode, autofocus: true, class: "form-control" %></td>
+          </tr>
+          <tr>
+            <th>住所</th>
+            <td><%= f.text_field :address, autofocus: true, size: 50, class: "form-control" %></td>
+          </tr>
+          <tr>
+            <th>宛名</th>
+            <td><%= f.text_field :delivery_name, autofocus: true , class: "form-control" %></td>
+          </tr>
+        </table>
+      </div>
+    　<%= f.submit"編集する",class: "btn btn-primary"%>
+    <% end %>
   </div>
-
-  　<%= f.submit"編集する",class: "btn btn-primary"%>
-  　
-  <!--下寄せにするには…？-->
-  </div>
-<% end %>
-</div>

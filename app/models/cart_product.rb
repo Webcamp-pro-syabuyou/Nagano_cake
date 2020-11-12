@@ -4,9 +4,16 @@ class CartProduct < ApplicationRecord
 
   validates :quantity, numericality: :only_integer
 
-  # def tax_included_price
-  #   (quantity * product.price * 1.1).floor
-  #   # 戻り値はreturn書かなくてもok
-  # end
+  def subtotal
+    (quantity * product.price * 1.1).floor
+  end
+
+  def self.cart_products_total_price(cart_products)
+    array = []
+    cart_products.each do |cart_product|
+      array << cart_product.product.price * cart_product.quantity
+    end
+    return (array.sum * 1.1).floor
+  end
 
 end

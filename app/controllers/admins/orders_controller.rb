@@ -31,7 +31,5 @@ class Admins::OrdersController < ApplicationController
       flash[:notice] = "注文情報を更新しました"
       redirect_to request.referer
     end
-    # <%= f.select :order_status, [["入金待ち",0],["入金確認",1,],["製作中",2],["発送準備中",3],["発送済み",4]] %>
-    # 上のフォーム形式を使用すると、対応する数字とvalue値がshowビューで設定したものなので、redirectした際にカラムの情報を自動で受け取って表示されない = リストの一番上の選択肢が表示されてしまう
   end
 end

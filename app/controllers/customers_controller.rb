@@ -1,5 +1,4 @@
 class CustomersController < ApplicationController
-  # ログインユーザ以外はcustomerのパスに飛ばずにログイン画面へ
   before_action :authenticate_customer!
 
   def show
@@ -20,19 +19,15 @@ class CustomersController < ApplicationController
   def resign
   end
 
-  # 退会ボタンを押した時、退会フラグを有効(false)から退会(true)へ切り替えるアクション
   def resign_update
     current_customer.update(is_deleted: true)
-    #ログアウトさせる
     reset_session
     flash[:notice] = "ご利用ありがとうございました"
     redirect_to root_path
   end
 
-
   private
   def customer_params
-
     params.require(:customer).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :email, :postalcode, :address, :tel)
   end
 end
