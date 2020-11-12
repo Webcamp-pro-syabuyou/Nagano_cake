@@ -51,7 +51,7 @@
                 <%= form_with model: order_product, url: admins_order_product_path(order_product), local: true do |f| %>
                   <%= f.hidden_field :id, :value => order_product.id %>
                   <%= f.select :product_status, OrderProduct.product_statuses.keys.to_a, {} %>
-                   <%= f.submit "更新", class:"btn btn-primary" %>
+                  <%= f.submit "更新", class:"btn btn-primary" %>
                 <% end %>
               </td>
             </tr>

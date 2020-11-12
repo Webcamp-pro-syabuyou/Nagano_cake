@@ -1,53 +1,48 @@
 <h1>会員情報 編集</h1>
-
 <div class="container">
   <div class="row">
     <div class="col-xs-10 col-xs-offset-1">
-
       <%= form_with model:@customer, url: admins_customer_path(@customer), local: true do |f| %>
         <%= render "layouts/error_message", model: @customer  %>
-        
-      <table = class="table">
-        <tr>
-          <th><%= f.label :id %></th>
-          <td><%= f.text_field :id ,autofocus: true, readonly: true, class: "form-control" %></td>
-        </tr>
-        <tr>
-          <th><%= f.label :名前 %></th>
-          <td><%= f.text_field :family_name ,autofocus: true, autocomplete: "family_name", class: "form-control" %>　<%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "form-control" %></td>
-        </tr>
-        <tr>
-          <th><%= f.label :フリガナ %></th>
-          <td><%= f.text_field :family_name_kana ,autofocus: true, autocomplete: "family_name_kana", class: "form-control" %>　<%= f.text_field :first_name_kana ,autofocus: true, autocomplete: "first_name_kana", class: "form-control" %></td>
-        </tr>
-        <tr>
-          <th><%= f.label :郵便番号 %></th>
-          <td><%= f.text_field :postalcode ,autofocus: true, autocomplete: "postalcode", class: "form-control" %></td>
-        </tr>
-        <tr>
-          <th><%= f.label :住所 %></th>
-          <td><%= f.text_field :address ,autofocus: true, autocomplete: "address", class: "form-control" %></td>
-        </tr>
-        <tr>
-          <th><%= f.label :電話番号 %></th>
-          <td><%= f.telephone_field :tel ,autofocus: true, autocomplete: "tel", class: "form-control" %></td>
-        </tr>
-        <tr>
-          <th><%= f.label :メールアドレス %></th>
-          <td><%= f.email_field :email ,autofocus: true, autocomplete: "email", class: "form-control" %></td>
-        </tr>
-        <tr>
-          <th>><%= f.label :会員ステータス %></th>
-          <td><%= f.radio_button :is_deleted, false %> 有効　<%= f.radio_button :is_deleted, true %> 退会済み</td>
-        </tr>
-      </table>
-      <br>
+        <table = class="table">
+          <tr>
+            <th><%= f.label :id %></th>
+            <td><%= f.text_field :id ,autofocus: true, readonly: true, class: "form-control" %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :名前 %></th>
+            <td><%= f.text_field :family_name ,autofocus: true, autocomplete: "family_name", class: "form-control" %>　<%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "form-control" %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :フリガナ %></th>
+            <td><%= f.text_field :family_name_kana ,autofocus: true, autocomplete: "family_name_kana", class: "form-control" %>　<%= f.text_field :first_name_kana ,autofocus: true, autocomplete: "first_name_kana", class: "form-control" %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :郵便番号 %></th>
+            <td><%= f.text_field :postalcode ,autofocus: true, autocomplete: "postalcode", class: "form-control" %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :住所 %></th>
+            <td><%= f.text_field :address ,autofocus: true, autocomplete: "address", class: "form-control" %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :電話番号 %></th>
+            <td><%= f.telephone_field :tel ,autofocus: true, autocomplete: "tel", class: "form-control" %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :メールアドレス %></th>
+            <td><%= f.email_field :email ,autofocus: true, autocomplete: "email", class: "form-control" %></td>
+          </tr>
+          <tr>
+            <th>><%= f.label :会員ステータス %></th>
+            <td><%= f.radio_button :is_deleted, false %> 有効　<%= f.radio_button :is_deleted, true %> 退会済み</td>
+          </tr>
+        </table>
+        <br>
         <div class="actions">
           <%= f.submit "変更を保存する" ,class:"btn btn-primary" %>
         </div>
-        
       <% end %>
-      
     </div>
   </div>
 </div>

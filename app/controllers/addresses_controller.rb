@@ -45,7 +45,6 @@ class AddressesController < ApplicationController
     params.require(:address).permit(:postalcode, :address, :delivery_name)
   end
 
-  # 他のユーザがurl入力で遷移してくるのを防ぐ
   def ensure_correct_customer
     @address = Address.find(params[:id])
     if @address.customer != current_customer

@@ -1,7 +1,6 @@
 class Admins::OrdersController < ApplicationController
   before_action :authenticate_admin!
   def number
-
     range = Date.today.beginning_of_day..Date.today.end_of_day
     @order = Order.where(created_at: range).count
   end
@@ -12,14 +11,9 @@ class Admins::OrdersController < ApplicationController
 
   def show
     @order = Order.find_by(id: params[:id])
-    # @order = Order.find(params [:id])ではなぜでないの？
-    # id = @order.customer_id
-    # customer = Customer.find(id)
-    # @order_products = customer.purchased_products
   end
 
   def update
-    # binding.pry
     order = Order.find(params[:order][:id])
     order_status = params[:order][:order_status]
     if order.update(order_status: order_status)
