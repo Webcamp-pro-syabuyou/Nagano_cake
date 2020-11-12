@@ -4,12 +4,62 @@
     <title>NaganoCake</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <%= yield %>
+    <header>
+      <div class="header">
+        <div class="logo"><div class="shop-image"></div></div>
+          <% if admin_signed_in? %>
+            <div class="admin-searchbar">
+              <%= form_with url: searches_search_path, method: :get, local: true do |f| %>
+                <%= f.select :range, options_for_select([['---選択してください---', ''],['Customer', '1'],['Product', '2']]) %>
+                <%= f.text_field :word %>
+                <%= f.submit "検索" %>
+              <% end %>
+            </div>
+          <% end %>
+          <div class="header-list">
+            <nav>
+              <ul>
+                <% if customer_signed_in? %>
+                  <li class="header-list-item"><%= link_to "トップ", root_path, class: "btn-primary" %></button></li>
+                  <li class="header-list-item"><%= link_to "マイページ", customers_path(current_customer), class: "btn-primary" %></li>
+                  <li class="header-list-item"><%= link_to "商品一覧", products_path, class: "btn-primary" %></li>
+                  <li class="header-list-item"><%= link_to "カート", cart_products_path, class: "btn-primary" %></li>
+                  <li class="header-list-item"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn-primary" %></li>
+                <% elsif admin_signed_in? %>
+                  <li class="header-list-item"><%= link_to "商品一覧", admins_products_path, class: "btn-primary" %></li>
+                  <li class="header-list-item"><%= link_to "会員一覧", admins_customers_path, class: "btn-primary" %></li>
+                  <li class="header-list-item"><%= link_to "注文履歴一覧", admins_orders_path, class: "btn-primary" %></li>
+                  <li class="header-list-item"><%= link_to "ジャンル一覧", admins_genres_path, class: "btn-primary" %></li>
+                  <li class="header-list-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn-primary" %></li>
+                <% else %>
+                  <li class="header-list-item"><%= link_to "トップ", root_path, class: "btn-primary" %></li>
+                  <li class="header-list-item"><%= link_to "About", homes_about_path, class: "btn-primary" %></li>
+                  <li class="header-list-item"><%= link_to "商品一覧", products_path, class: "btn-primary" %></li></a>
+                  <li class="header-list-item"><%= link_to "新規登録", new_customer_registration_path, class: "btn-primary" %></li>
+                  <li class="header-list-item"><%= link_to "ログイン", new_customer_session_path, class: "btn-primary"  %></li>
+                <% end %>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+    <main>
+      <div class="container">
+        <%= yield %>
+      </div>
+    </main>
+    <footer>
+      <div class=footer-text>©️inc.Shabuyou.NaganoCake</div>
+    </footer>
   </body>
 </html>

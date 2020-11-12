@@ -1,3 +1,36 @@
-// Place all the styles related to the products controller here.
+// Place all the styles related to the Products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* product-index */
+
+.genre-box {
+	margin-top: 35px;
+
+}
+
+.genre-list {
+	margin-top: 15px;
+	padding: 40px 15px 15px 15px;
+	border: 2px solid #b8860b;
+	background-color: #ffffff;
+	box-shadow: 3px 3px 5px #000;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.genre-list-item {
+	margin: 0 20px 20px 0;
+	border: 2px solid #b8860b;
+	text-align: center;
+	background-color: #b8860b;
+	color: #ffffff;
+}
+
+
+
+
+
+
+

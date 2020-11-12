@@ -1,0 +1,42 @@
+<%= flash[:error] %>
+<h1>会員の方はこちらからログイン</h1>
+<div class="row">
+ <div class="col-md-2"></div>
+ 
+ <div class="col-md-8">
+
+<%= form_for(resource, as: resource_name, url: customer_session_path) do |f| %>
+<%= render "admins/shared/error_messages", resource: resource %>
+
+<table class="table">
+  <tr>
+     <th><%= f.label :email ,"メールアドレス"%></th>
+      <td><%= f.email_field :email, autofocus: true, class: "form-control" %></td>
+    </div>
+    </tr>
+    <tr>
+      <th><%= f.label :password ,"パスワード"%></th>
+      <td><%= f.password_field :password, class: "form-control" %></td>
+    </tr>
+    </table>
+     <div class="actions">
+      <%= f.submit "ログイン",class: "btn btn-primary" %>
+    </div>
+    <br>
+     <% if devise_mapping.rememberable? %>
+      <div class="field">
+        パスワードを忘れた方は <%=link_to "こちら",new_customer_password_path%> <br />
+      </div>
+    <% end %>
+
+
+<% end %>
+
+<div>登録がお済みでない方は <%= link_to 'こちら', new_customer_registration_path %> から新規登録を行ってください<div>
+ 
+ </div>
+ 
+ <div class="col-md-2"></div>
+ 
+ </div>
+ 

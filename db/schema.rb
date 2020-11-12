@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_31_094317) do
+ActiveRecord::Schema.define(version: 2020_11_09_081533) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "customer_id"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2020_10_31_094317) do
     t.string "postalcode"
     t.string "address"
     t.string "tel"
-    t.boolean "is_customer_status"
+    t.boolean "is_deleted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 2020_10_31_094317) do
 
   create_table "genres", force: :cascade do |t|
     t.string "name"
-    t.boolean "is_genres_status"
+    t.boolean "is_active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2020_10_31_094317) do
     t.integer "order_id"
     t.integer "product_price"
     t.integer "quantity"
-    t.integer "product_status"
+    t.integer "product_status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -83,10 +83,10 @@ ActiveRecord::Schema.define(version: 2020_10_31_094317) do
     t.string "postalcode"
     t.string "delivery_address"
     t.string "delivery_name"
-    t.integer "postage"
+    t.integer "postage", default: 800
     t.integer "total_price"
     t.integer "payment_method"
-    t.integer "order_status"
+    t.integer "order_status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 2020_10_31_094317) do
     t.string "image_id"
     t.text "introduction"
     t.integer "price"
-    t.integer "sales_status"
+    t.boolean "is_active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -2,33 +2,42 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root 'homes#top'
+  get 'searches/search' => 'searches#search'
   get 'homes/about' => 'homes#about'
-
-  devise_for :admins
-  devise_for :customers do
-
   delete 'cart_products/destroy_all' => 'cart_products#destroy_all'
-  get 'customers/resign' => 'custmers#resign'
+  get 'customers/resign' => 'customers#resign'
+  patch 'customers/resign' => 'customers#resign_update'
   get 'orders/thanks' => 'orders#thanks'
 
-  namespace :admins do
-    resources :orders
-    resource :customers
-    resources :products
-    resources :order_products do
-      resources :genres
+  resource :customers,except: :create do
+  resources :addresses
+   end
+  resources :products, only: [:index,:show]
+  resources :genres, only: [:index] do
+  end
+  resources :order_products
+  resources :cart_products, only:[:create, :index, :update, :destroy]
+  resources :orders do
+    collection do
+      post :confirm
     end
-    get 'orders/number' => 'orders#number'
   end
 
+  devise_for :customers ,controllers: {
+    sessions: 'customers/sessions',
+    registrations: 'customers/registrations'
+  }
 
- resource :custmers do
-   resources :address
- end
- resources :orders
- resources :products
- resources :order_products
- resources :cart_products
+  devise_for :admins  ,controllers: {
+    sessions: 'admins/sessions'
+  }
 
-end
+  namespace :admins do
+    get 'orders/number' => 'orders#number'
+    resources :orders, only:[:index, :show, :update]
+    resources :customers
+    resources :products, only: [:index,:new,:create,:show,:edit,:update]
+    resources :order_products, only: [:update]
+    resources :genres, only: [:index,:edit,:create,:update]
+  end
 end

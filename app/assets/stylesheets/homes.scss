@@ -1,3 +1,92 @@
 // Place all the styles related to the homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* top */
+
+th {
+    background-color: #b8860b;
+}
+
+.heading-text {
+    margin-bottom: 25px;
+    color: #b8860b;
+}
+
+.top-container {
+    margin-top: 30px;
+}
+
+.table {
+  border: 2px solid #b8860b;
+  background-color: #ffffff;
+}
+
+.table-heading {
+    text-align: center;
+    color: #ffffff;
+    }
+
+.top-heading {
+  color: #b8860b;
+}
+
+.top-message {
+    margin-top: 40px;
+  text-align: center;
+  font-size: 15px;
+  line-height: 30px;
+}
+
+.popular-products {
+
+   text-align: center;
+   margin: 30px 0;
+   padding: 0 0 20px 0;
+   border: 2px solid #b8860b;
+   background-color: #ffffff;
+   box-shadow: 3px 3px 5px #000;
+
+}
+
+.popular-puroducts-container {
+
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.popular-puroducts-item {
+  margin: 0 20px;
+  	border: 2px solid #b8860b;
+	text-align: center;
+	background-color: #b8860b;
+	color: #ffffff;
+}
+/* about */
+
+.about-heading {
+  text-align: center;
+  font-size: 50px;
+  margin-bottom: 15px;
+}
+
+.about-message {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  font-size: 15px;
+}
+
+.about-shop-image {
+   width: 500px;
+   height: 300px;
+   margin: 0 auto;
+   background-image: url("/images/logo.png");
+   background-size: cover;
+   background-position: 55% 45%;
+   border: #191970;
+}
+
+
+

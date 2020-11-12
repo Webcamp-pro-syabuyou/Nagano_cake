@@ -1,0 +1,69 @@
+<% if @range == "1" %>
+  <h2><%= @word %>と一致する会員情報</h2>
+    <% if @customers.empty? %>
+      一致する情報はありません
+    <% else %>
+      <table>
+        <thead>
+          <tr>
+            <th>会員ID</th>
+            <th>氏名</th>
+            <th>メールアドレス</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @customers.each do |customer| %>
+            <tr>
+              <td><%= customer.id %></td>
+              <td>
+                <%= link_to customer.family_name + customer.first_name, admins_customer_path(customer) %>
+              </td>
+              <td><%= customer.email %></td>
+              <td>
+                <% if customer.is_deleted %>
+                  退会済み
+                <% else %>
+                  有効
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+<% elsif @range == "2" %>
+  <h2><%= @word %>と一致する商品情報</h2>
+  <% if @products.empty? %>
+    一致する商品情報はありません
+  <% else %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>商品名</th>
+          <th>税抜価格</th>
+          <th>ジャンル</th>
+          <th>ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @products.each do |product| %>
+          <tr>
+            <td><%= product.id %></td>
+            <td><%= link_to product.name,admins_product_path(product.id) %></td>
+            <td><%= product.price %></td>
+            <td><%= product.genre.name %></td>
+            <td>
+              <% if product.is_active %>
+                販売中
+              <% else %>
+                販売停止中
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+<% end %>
