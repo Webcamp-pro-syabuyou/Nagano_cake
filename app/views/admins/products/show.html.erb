@@ -1,61 +1,56 @@
-<div class="container">
-    <div class="row">
-      <h3 class="under-border">商品 詳細画面</h3>
-      <div class="col-xs-4">
-        <div class="product-image">
-         
-        <%= attachment_image_tag @product, :image, :limit, 300, 300, fallback: "no_image.jpg",size: "300x300" %>
-           
+<h1>商品 詳細画面</h1>
+
+        <div class="row">
+
+           <div class="col-md-4">
+             <div class="product-imag">
+               <table class="table">
+                 <tr>
+                   <th><div class="text-center"><%= attachment_image_tag @product, :image, :limit, 320, 320, fallback: "no_image.jpg",size: "320x320" %></div></th>
+                 </tr>
+               </table>
+             </div>
+           </div>
+
+           <div class="col-md-8">
+
+            <table class="table">
+              <tr>
+                <th>商品名</th>
+                <td><%= @product.name %></td>
+              </tr>
+              <tr>
+                <th>商品説明</th>
+                <td><%= @product.introduction %></td>
+              <tr>
+                <th>ジャンル</th>
+                <td><%= @product.genre.name %></td>
+              </tr>
+              <tr>
+                <th>税込価格</th>
+                <td><%= (@product.price * 1.1).floor %>(<%= @product.price %>)円</td>
+              </tr>
+              <tr>
+                <th>ステータス</th>
+                <td>
+                  <% if @product.is_active %>
+                  販売中
+                  <% else %>
+                  販売停止中
+                  <% end %>
+                </td>
+              </tr>
+            </table>
+          </div>
+
         </div>
-      </div>
-      <div class="col-xs-8">
-        <div class="form-group row">
-          <div class="col-xs-2">
-            <label>商品名</label>
+
+        <div class="row">
+
+          <div class="col-md-12">
+            <div class="text-right">
+              <%= link_to "編集する",edit_admins_product_path(@product.id),class: "btn btn-primary" %>
+            </div>
           </div>
-          <div class="col-xs-6">
-            <%= @product.name %>
-          </div>
+
         </div>
-        <div class="form-group row">
-          <div class="col-xs-2">
-            <label>商品説明</label>
-          </div>
-          <div class="col-xs-6">
-            <%= @product.introduction %>
-          </div>
-        </div>
-        <div class="form-group row">
-          <div class="col-xs-2">
-            <label>ジャンル</label>
-          </div>
-          <div class="col-xs-6">
-            <%= @product.genre.name %>
-          </div>
-        </div>
-        <div class="form-group row">
-          <div class="col-xs-2">
-            <label>税込価格</label>
-          </div>
-          <div class="col-xs-6">
-            <%= (@product.price * 1.1).floor %>(<%= @product.price %>)円
-          </div>
-        </div>
-        <div class="form-group row">
-          <div class="col-xs-2">
-            <label>ステータス</label>
-          </div>
-          <div class="col-xs-6">
-            <% if @product.is_active %>
-              販売中
-            <% else %>
-              販売停止中
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="text-right">
-      <%= link_to "編集する",edit_admins_product_path(@product.id),class: "btn btn-primary" %>
-    </div>
-</div>
