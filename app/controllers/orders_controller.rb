@@ -15,17 +15,17 @@ class OrdersController < ApplicationController
   def confirm
     @cart_products = current_customer.cart_products
     @cart_product = CartProduct.new
-    
+
     array = []
     current_customer.cart_products.all.each do |cart_product|
       array << cart_product.product.price * cart_product.quantity
     end
-    
+
     @cart_price = (array.sum * 1.1).floor
     @total_price = (array.sum * 1.1).floor + 800
     return if @order.valid?
     @payment_method = params[:order][:payment_method]
-    
+
     if params[:order][:address_option] == "0"
       @order.postalcode = current_customer.postalcode
       @order.delivery_address = current_customer.address
@@ -48,18 +48,10 @@ class OrdersController < ApplicationController
       array << cart_product.product.price * cart_product.quantity
     end
 
-    @order = Order.new(
-      postalcode: params[:order][:postalcode],
-      customer_id: current_customer.id,
-      delivery_address: params[:order][:delivery_address],
-      delivery_name: params[:order][:delivery_name],
-      payment_method: params[:order][:payment_method],
-      order_status: params[:order][:order_status],
-      postage: params[:order][:postage],
-      total_price: params[:order][:total_price])
+    @order = current_customer.orders.new(order_params)
     @order.save
 
-    if current_customer.address != @order.delivery_address && current_customer.addresses.where(address: @order.delivery_address).empty?
+    if @order.address_already_registerd?(current_customer)
       postalcode = @order.postalcode
       address = @order.delivery_address
       delivery_name = @order.delivery_name
