@@ -8,4 +8,9 @@ class Order < ApplicationRecord
   validates :postalcode, presence: true
   validates :delivery_name, presence: true
   validates :delivery_address, presence: true
+
+   def address_already_registerd?(current_customer)
+     current_customer.address != delivery_address && current_customer.addresses.where(address: delivery_address).empty?
+   end
+
 end
